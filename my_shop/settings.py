@@ -19,7 +19,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "shop",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -27,7 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # my apps
-    "shop",
+    "shop",  # if you have an app you must add to this list to know to django
 ]
 
 MIDDLEWARE = [
@@ -47,7 +46,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / "templates",
-            BASE_DIR / "shop/templates",
+            BASE_DIR / "shop/templates",  # add the template dirs
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -111,5 +110,5 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIR = [
     BASE_DIR / "static",
-    BASE_DIR / "shop/static",
+    BASE_DIR / "shop/static",  # add the static dirs
 ]

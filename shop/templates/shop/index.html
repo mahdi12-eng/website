@@ -1,8 +1,12 @@
-{% load static %}
+{% load static %} {% comment %} this line is for loading the static files {%
+endcomment %}
 <!DOCTYPE html>
 <html>
   <head>
+    {% comment %} linking the css file to template {% endcomment %}
+
     <link rel="stylesheet" href="{% static 'shop/index.css' %}" />
+
     <title>Our Selling Website</title>
   </head>
   <body>
