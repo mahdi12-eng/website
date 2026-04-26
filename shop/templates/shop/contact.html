@@ -1,54 +1,55 @@
 {% extends "shop/base.html" %}
 
-{% block title %}Contact - Shanbe Bazaar{% endblock %}
+{% block title %}Contact - Panj Shanbe Bazaar{% endblock %}
 
 {% block content %}
-<section class="container pt-4">
-  <div class="page-header mb-3">
-    <h1>Customer Support</h1>
-    <p>Need help with an order or product? Send us your message.</p>
+<!-- CONTACT BANNER -->
+<section class="container-fluid py-5 px-5 bg-black text-white">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1 class="lush-title text-white mb-3">GET IN TOUCH</h1>
+      <p class="lead opacity-75">Our team is here to help you with any questions or orders.</p>
+    </div>
   </div>
 </section>
 
-<section class="container">
-  <div class="row g-3">
+<section class="container py-5">
+  <div class="row g-5">
     <div class="col-lg-7">
-      <form class="content-card">
-      <div class="mb-3">
-        <label class="form-label" for="name">Name</label>
-        <input class="form-control" id="name" type="text" placeholder="Your name" />
+      <div class="p-4 border border-dark">
+        <h2 class="fw-black mb-4">SEND A MESSAGE</h2>
+        <form>
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-uppercase" for="name">Your Name</label>
+            <input class="form-control rounded-0 border-dark" id="name" type="text" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-uppercase" for="email">Email Address</label>
+            <input class="form-control rounded-0 border-dark" id="email" type="email" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-uppercase" for="message">Your Message</label>
+            <textarea class="form-control rounded-0 border-dark" id="message" rows="5"></textarea>
+          </div>
+          <button class="lush-btn-black w-100" type="button">SEND MESSAGE</button>
+        </form>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="email">Email</label>
-        <input
-          class="form-control"
-          id="email"
-          type="email"
-          placeholder="you@example.com"
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="message">Message</label>
-        <textarea
-          class="form-control"
-          id="message"
-          rows="4"
-          placeholder="Write your message"
-        ></textarea>
-      </div>
-      <button class="btn btn-warning fw-semibold px-4" type="button">
-        Send Message
-      </button>
-      </form>
     </div>
     <div class="col-lg-5">
-      <div class="content-card h-100">
-        <h3 class="h5 mb-3">Help Center</h3>
-        <p class="mb-2"><strong>Email:</strong> support@shanbebazaar.com</p>
-        <p class="mb-2"><strong>Phone:</strong> +93 70 000 0000</p>
-        <p class="mb-0">
-          Service hours: Saturday to Thursday, 8:00 AM to 8:00 PM.
-        </p>
+      <div class="p-4 bg-light border border-dark h-100">
+        <h2 class="fw-black mb-4">HELP CENTRE</h2>
+        <div class="mb-4">
+          <p class="fw-bold mb-1 text-uppercase small">Email Us</p>
+          <p class="fs-5">support@panjshanbebazaar.com</p>
+        </div>
+        <div class="mb-4">
+          <p class="fw-bold mb-1 text-uppercase small">Call Us</p>
+          <p class="fs-5">+93 70 000 0000</p>
+        </div>
+        <div>
+          <p class="fw-bold mb-1 text-uppercase small">Operating Hours</p>
+          <p class="fs-5">Saturday – Thursday<br>8:00 AM – 8:00 PM</p>
+        </div>
       </div>
     </div>
   </div>

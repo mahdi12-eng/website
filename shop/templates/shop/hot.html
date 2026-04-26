@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}HOT Products - Panj Shanbe Bazaar{% endblock %}
+
+{% block content %}
+<section class="hot-page py-5">
+    <div class="container">
+        <h1 class="lush-title text-center mb-5">🔥 HOT BESTSELLERS 🔥</h1>
+        <p class="text-center mb-5 lead">The most wanted products right now. Turning heads everywhere!</p>
+        
+        <div class="row g-4 g-lg-5">
+            {% for product in products %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="hot-card-wrapper">
+                    <div class="hot-card-inner">
+                        <div class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center">
+                            <a href="{% url 'product_detail' product.slug %}" class="mb-3 d-block">
+                                <img src="{{ product.image }}" alt="{{ product.name }}" class="img-fluid">
+                            </a>
+                            <div class="hot-badge-large">HOT</div>
+                            <h3 class="fw-black mb-1" style="font-size: 1.5rem;">{{ product.name }}</h3>
+                            <p class="fs-4 fw-bold mb-0">{{ product.price }}</p>
+                        </div>
+                        <div class="hot-card-back bg-black text-white p-4 d-flex flex-column justify-content-center">
+                            <h3 class="fw-black mb-3">WHY IT'S HOT</h3>
+                            <p class="mb-4 small">{{ product.description }}</p>
+                            <a href="{% url 'product_detail' product.slug %}" class="lush-btn-white py-3">VIEW PRODUCT</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info-static text-center mt-4">
+                    <h5 class="fw-black mb-1">{{ product.name }}</h5>
+                    <p class="text-muted fw-bold">{{ product.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

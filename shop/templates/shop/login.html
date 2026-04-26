@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Login - Panj Shanbe Bazaar{% endblock %}
+
+{% block content %}
+<!-- LOGIN BANNER -->
+<section class="container-fluid py-5 px-5 bg-black text-white">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1 class="lush-title text-white mb-3">WELCOME BACK</h1>
+      <p class="lead opacity-75">Sign in to your Panj Shanbe account to manage your orders.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="p-4 p-lg-5 border border-dark">
+                <h2 class="fw-black mb-5 text-uppercase">SIGN IN</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="username" class="small text-uppercase fw-bold mb-2">Username or Email</label>
+                        <input type="text" class="form-control rounded-0 border-dark py-3" id="username">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="small text-uppercase fw-bold mb-2">Password</label>
+                        <input type="password" class="form-control rounded-0 border-dark py-3" id="password">
+                    </div>
+                    <div class="mb-4 form-check">
+                        <input type="checkbox" class="form-check-input rounded-0 border-dark" id="remember">
+                        <label class="form-check-label small text-uppercase fw-bold" for="remember">Keep me logged in</label>
+                    </div>
+                    <button type="submit" class="lush-btn-black w-100 py-3">LOGIN TO ACCOUNT</button>
+                </form>
+                <div class="mt-5 pt-4 border-top border-dark text-center">
+                    <p class="small text-uppercase fw-bold mb-3">New to Panj Shanbe?</p>
+                    <a href="{% url 'register' %}" class="lush-btn-white d-block w-100 py-3">CREATE NEW ACCOUNT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

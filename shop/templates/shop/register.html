@@ -1,0 +1,58 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Register - Panj Shanbe Bazaar{% endblock %}
+
+{% block content %}
+<!-- REGISTER BANNER -->
+<section class="container-fluid py-5 px-5 bg-black text-white">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1 class="lush-title text-white mb-3">JOIN THE FAMILY</h1>
+      <p class="lead opacity-75">Create an account to track orders and receive exclusive cultural updates.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="p-4 p-lg-5 border border-dark">
+                <h2 class="fw-black mb-5 text-uppercase">CREATE ACCOUNT</h2>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="firstName" class="small text-uppercase fw-bold mb-2">First Name</label>
+                            <input type="text" class="form-control rounded-0 border-dark py-3" id="firstName">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="lastName" class="small text-uppercase fw-bold mb-2">Last Name</label>
+                            <input type="text" class="form-control rounded-0 border-dark py-3" id="lastName">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="small text-uppercase fw-bold mb-2">Email Address</label>
+                        <input type="email" class="form-control rounded-0 border-dark py-3" id="email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="small text-uppercase fw-bold mb-2">Password</label>
+                        <input type="password" class="form-control rounded-0 border-dark py-3" id="password">
+                    </div>
+                    <div class="mb-4">
+                        <label for="confirmPassword" class="small text-uppercase fw-bold mb-2">Confirm Password</label>
+                        <input type="password" class="form-control rounded-0 border-dark py-3" id="confirmPassword">
+                    </div>
+                    <div class="mb-4">
+                        <p class="small text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">By creating an account, you agree to Panj Shanbe Bazaar's Ethics, Privacy Policy, and Terms.</p>
+                    </div>
+                    <button type="submit" class="lush-btn-black w-100 py-3">CREATE MY ACCOUNT</button>
+                </form>
+                <div class="mt-5 pt-4 border-top border-dark text-center">
+                    <p class="small text-uppercase fw-bold mb-3">Already a member?</p>
+                    <a href="{% url 'login' %}" class="lush-btn-white d-block w-100 py-3">SIGN IN HERE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

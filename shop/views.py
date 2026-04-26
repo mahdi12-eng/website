@@ -1,315 +1,83 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.utils.text import slugify
 
 
 PRODUCTS = [
-    {
-        "name": "MacBook Air M2 13 - Silver",
-        "category": "laptops",
-        "price": "$1,099",
-        "description": "Apple M2 chip, 8GB RAM, 256GB SSD in Silver finish.",
-        "image": "/static/shop/images/products/macbook-air-m2-silver.jpg",
-    },
-    {
-        "name": "MacBook Air M2 13 - Midnight",
-        "category": "laptops",
-        "price": "$1,149",
-        "description": "Apple M2 chip, 8GB RAM, 512GB SSD in Midnight color.",
-        "image": "/static/shop/images/products/macbook-air-m2-midnight.jpg",
-    },
-    {
-        "name": "MacBook Pro M3 14 - Space Black",
-        "category": "laptops",
-        "price": "$1,999",
-        "description": "Pro M3 performance with 16GB RAM and 512GB SSD.",
-        "image": "/static/shop/images/products/macbook-pro-m3-spaceblack.jpg",
-    },
-    {
-        "name": "MacBook Pro M3 14 - Silver",
-        "category": "laptops",
-        "price": "$1,949",
-        "description": "High-end MacBook Pro for editing, coding, and design.",
-        "image": "/static/shop/images/products/macbook-pro-m3-silver.jpg",
-    },
-    {
-        "name": "Dell XPS 13 - Silver",
-        "category": "laptops",
-        "price": "$1,299",
-        "description": "Premium ultrabook with thin bezels and light body.",
-        "image": "/static/shop/images/products/dell-xps13-silver.jpg",
-    },
-    {
-        "name": "Dell Inspiron 15 - Black",
-        "category": "laptops",
-        "price": "$789",
-        "description": "Balanced laptop for office tasks, study, and browsing.",
-        "image": "/static/shop/images/products/dell-inspiron15-black.jpg",
-    },
-    {
-        "name": "HP Spectre x360 - Blue",
-        "category": "laptops",
-        "price": "$1,449",
-        "description": "Convertible premium laptop with touchscreen display.",
-        "image": "/static/shop/images/products/hp-spectre-x360-blue.jpg",
-    },
-    {
-        "name": "HP Envy 14 - Silver",
-        "category": "laptops",
-        "price": "$1,099",
-        "description": "Creator-focused performance with modern sleek design.",
-        "image": "/static/shop/images/products/hp-envy14-silver.jpg",
-    },
-    {
-        "name": "Lenovo ThinkPad X1 - Black",
-        "category": "laptops",
-        "price": "$1,359",
-        "description": "Business-class durability and top keyboard experience.",
-        "image": "/static/shop/images/products/lenovo-thinkpad-x1-black.jpg",
-    },
-    {
-        "name": "Asus Zenbook 14 - Gray",
-        "category": "laptops",
-        "price": "$969",
-        "description": "Compact Zenbook model with powerful daily performance.",
-        "image": "/static/shop/images/products/asus-zenbook14-gray.jpg",
-    },
-    {
-        "name": "Acer Swift Go - Silver",
-        "category": "laptops",
-        "price": "$829",
-        "description": "Slim and affordable option for students and office use.",
-        "image": "/static/shop/images/products/acer-swift-go-silver.jpg",
-    },
-    {
-        "name": "MSI Prestige 14 - White",
-        "category": "laptops",
-        "price": "$1,179",
-        "description": "Modern laptop for professionals with dedicated graphics.",
-        "image": "/static/shop/images/products/msi-prestige14-white.jpg",
-    },
-    {
-        "name": "iPhone 15 - Black",
-        "category": "phones",
-        "price": "$899",
-        "description": "Latest iPhone standard model in elegant black.",
-        "image": "/static/shop/images/products/iphone-15-black.jpg",
-    },
-    {
-        "name": "iPhone 15 - Blue",
-        "category": "phones",
-        "price": "$899",
-        "description": "Apple iPhone 15 with bright blue finish and dual camera.",
-        "image": "/static/shop/images/products/iphone-15-blue.jpg",
-    },
-    {
-        "name": "iPhone 15 Pro - Natural Titanium",
-        "category": "phones",
-        "price": "$1,199",
-        "description": "Pro-level iPhone with titanium body and advanced camera.",
-        "image": "/static/shop/images/products/iphone-15-pro-natural.jpg",
-    },
-    {
-        "name": "Samsung Galaxy S24 - Black",
-        "category": "phones",
-        "price": "$999",
-        "description": "Flagship Samsung phone with premium display quality.",
-        "image": "/static/shop/images/products/samsung-s24-black.jpg",
-    },
-    {
-        "name": "Samsung Galaxy A55 - Blue",
-        "category": "phones",
-        "price": "$479",
-        "description": "Reliable mid-range Galaxy with long battery life.",
-        "image": "/static/shop/images/products/samsung-a55-blue.jpg",
-    },
-    {
-        "name": "Xiaomi 14 - White",
-        "category": "phones",
-        "price": "$849",
-        "description": "Compact premium Android with fast charging support.",
-        "image": "/static/shop/images/products/xiaomi-14-white.jpg",
-    },
-    {
-        "name": "Redmi Note 13 - Green",
-        "category": "phones",
-        "price": "$329",
-        "description": "Value-focused Redmi model with smooth display refresh.",
-        "image": "/static/shop/images/products/redmi-note-13-green.jpg",
-    },
-    {
-        "name": "Google Pixel 8 - Rose",
-        "category": "phones",
-        "price": "$799",
-        "description": "Clean Android experience with excellent photo quality.",
-        "image": "/static/shop/images/products/google-pixel-8-rose.jpg",
-    },
-    {
-        "name": "OnePlus 12 - Green",
-        "category": "phones",
-        "price": "$879",
-        "description": "High-performance OnePlus flagship with fluid interface.",
-        "image": "/static/shop/images/products/oneplus-12-green.jpg",
-    },
-    {
-        "name": "Oppo Reno 11 - Gold",
-        "category": "phones",
-        "price": "$599",
-        "description": "Stylish phone with balanced camera and battery features.",
-        "image": "/static/shop/images/products/oppo-reno11-gold.jpg",
-    },
-    {
-        "name": "Huawei Nova 12 - Purple",
-        "category": "phones",
-        "price": "$649",
-        "description": "Elegant design with strong portrait camera performance.",
-        "image": "/static/shop/images/products/huawei-nova12-purple.jpg",
-    },
-    {
-        "name": "Realme 12 - Black",
-        "category": "phones",
-        "price": "$369",
-        "description": "Affordable all-rounder phone for daily use and study.",
-        "image": "/static/shop/images/products/realme-12-black.jpg",
-    },
-    {
-        "name": "Afghani Gand Classic",
-        "category": "afghani-clothes",
-        "price": "$68",
-        "description": "Traditional full set with comfortable fabric for daily wear.",
-        "image": "/static/shop/images/products/afghani-clothes-1.jpg",
-    },
-    {
-        "name": "Kandahari Embroidered Set",
-        "category": "afghani-clothes",
-        "price": "$95",
-        "description": "Hand-finished embroidery inspired by Kandahari patterns.",
-        "image": "/static/shop/images/products/afghani-clothes-2.jpg",
-    },
-    {
-        "name": "Herati Festive Dress",
-        "category": "afghani-clothes",
-        "price": "$110",
-        "description": "Elegant festive dress made for weddings and ceremonies.",
-        "image": "/static/shop/images/products/afghani-clothes-3.jpg",
-    },
-    {
-        "name": "Mazar Soft Cotton Gand",
-        "category": "afghani-clothes",
-        "price": "$59",
-        "description": "Soft cotton gand suitable for warm seasons and travel.",
-        "image": "/static/shop/images/products/afghani-clothes-4.jpg",
-    },
-    {
-        "name": "Afghan Youth Daily Set",
-        "category": "afghani-clothes",
-        "price": "$54",
-        "description": "Modern-cut traditional set designed for young customers.",
-        "image": "/static/shop/images/products/afghani-clothes-5.jpg",
-    },
-    {
-        "name": "Northern Velvet Gand",
-        "category": "afghani-clothes",
-        "price": "$132",
-        "description": "Premium velvet texture with refined Afghan tailoring.",
-        "image": "/static/shop/images/products/afghani-clothes-6.jpg",
-    },
-    {
-        "name": "Classic White Perahan Tunban",
-        "category": "afghani-clothes",
-        "price": "$61",
-        "description": "Clean white set for mosque, gatherings, and formal events.",
-        "image": "/static/shop/images/products/afghani-clothes-7.jpg",
-    },
-    {
-        "name": "Afghan Winter Wool Set",
-        "category": "afghani-clothes",
-        "price": "$89",
-        "description": "Warm wool blend outfit suitable for winter weather.",
-        "image": "/static/shop/images/products/afghani-clothes-8.jpg",
-    },
-    {
-        "name": "Traditional Green Chapan",
-        "category": "afghani-clothes",
-        "price": "$140",
-        "description": "Traditional chapan with rich color and classic stripe style.",
-        "image": "/static/shop/images/products/afghani-clothes-9.jpg",
-    },
-    {
-        "name": "Royal Blue Ceremony Gand",
-        "category": "afghani-clothes",
-        "price": "$125",
-        "description": "Ceremony-focused set with elegant stitching details.",
-        "image": "/static/shop/images/products/afghani-clothes-10.jpg",
-    },
-    {
-        "name": "Handmade Copper Pot",
-        "category": "home-kitchen",
-        "price": "$42",
-        "description": "Durable Afghan-style copper pot for family cooking.",
-        "image": "/static/shop/images/products/home-kitchen-1.jpg",
-    },
-    {
-        "name": "Traditional Serving Dish Set",
-        "category": "home-kitchen",
-        "price": "$58",
-        "description": "Decorative serving dishes for tea and guest tables.",
-        "image": "/static/shop/images/products/home-kitchen-2.jpg",
-    },
-    {
-        "name": "Ceramic Tea Pot",
-        "category": "home-kitchen",
-        "price": "$35",
-        "description": "Classic tea pot with insulated handle and secure lid.",
-        "image": "/static/shop/images/products/home-kitchen-3.jpg",
-    },
-    {
-        "name": "Family Rice Pot",
-        "category": "home-kitchen",
-        "price": "$47",
-        "description": "Large pot designed for qabuli and family-size meals.",
-        "image": "/static/shop/images/products/home-kitchen-4.jpg",
-    },
-    {
-        "name": "Afghan Soup Bowl Collection",
-        "category": "home-kitchen",
-        "price": "$39",
-        "description": "Set of deep bowls ideal for shorwa and soup service.",
-        "image": "/static/shop/images/products/home-kitchen-5.jpg",
-    },
-    {
-        "name": "Heavy Base Fry Pan",
-        "category": "home-kitchen",
-        "price": "$33",
-        "description": "Strong base pan for balanced heat and easy frying.",
-        "image": "/static/shop/images/products/home-kitchen-6.jpg",
-    },
-    {
-        "name": "Classic Tea Glass Set",
-        "category": "home-kitchen",
-        "price": "$26",
-        "description": "Traditional tea glasses suitable for daily hosting.",
-        "image": "/static/shop/images/products/home-kitchen-7.jpg",
-    },
-    {
-        "name": "Traditional Bread Basket",
-        "category": "home-kitchen",
-        "price": "$18",
-        "description": "Woven basket perfect for naan and table presentation.",
-        "image": "/static/shop/images/products/home-kitchen-8.jpg",
-    },
-    {
-        "name": "Kitchen Spice Jar Set",
-        "category": "home-kitchen",
-        "price": "$29",
-        "description": "Compact spice jars for organized Afghan cooking.",
-        "image": "/static/shop/images/products/home-kitchen-9.jpg",
-    },
-    {
-        "name": "Copper Serving Tray",
-        "category": "home-kitchen",
-        "price": "$44",
-        "description": "Hand-polished tray for tea service and guest tables.",
-        "image": "/static/shop/images/products/home-kitchen-10.jpg",
-    },
+    # --- LAPTOPS (16 items) ---
+    {"name": "Dell Precision 5570", "category": "laptops", "price": "$1,450", "description": "Powerful workstation for high-end professional tasks.", "image": "/static/shop/images/products/5570computer.jpg", "hot": True},
+    {"name": "MacBook Pro M3 Max", "category": "laptops", "price": "$2,499", "description": "The ultimate power for developers and creators.", "image": "/static/shop/images/products/macbookcomputer.jpg", "hot": True},
+    {"name": "MacBook Air 13-inch", "category": "laptops", "price": "$1,099", "description": "Thin, light, and faster than ever.", "image": "/static/shop/images/products/mscbook1.jpg", "hot": True},
+    {"name": "Dell Latitude 7420", "category": "laptops", "price": "$899", "description": "Compact business laptop with great battery life.", "image": "/static/shop/images/products/computer.jpg"},
+    {"name": "Precision Workstation 5540", "category": "laptops", "price": "$1,150", "description": "Reliable performance in a sleek design.", "image": "/static/shop/images/products/computer5540.webp", "hot": True},
+    {"name": "MacBook Pro Silver", "category": "laptops", "price": "$1,299", "description": "Classic design with modern internals.", "image": "/static/shop/images/products/macbook3.jpg"},
+    {"name": "Dell XPS 15", "category": "laptops", "price": "$1,350", "description": "Stunning display with powerful performance.", "image": "/static/shop/images/products/computer1.jpg"},
+    {"name": "Workstation Pro 0", "category": "laptops", "price": "$950", "description": "Budget friendly professional laptop.", "image": "/static/shop/images/products/computer0.jpg"},
+    {"name": "Workstation Pro 00", "category": "laptops", "price": "$1,050", "description": "Reliable daily driver for work.", "image": "/static/shop/images/products/computer00.jpg"},
+    {"name": "Dell Precision V2", "category": "laptops", "price": "$1,400", "description": "High-end graphics and CPU power.", "image": "/static/shop/images/products/computer2.jpg"},
+    {"name": "MacBook Pro M2", "category": "laptops", "price": "$1,599", "description": "Fast and efficient Apple Silicon.", "image": "/static/shop/images/products/macbook4.jpg"},
+    {"name": "MacBook Pro Space Gray", "category": "laptops", "price": "$1,799", "description": "The choice for professional editors.", "image": "/static/shop/images/products/macbook5.jpg"},
+    {"name": "MacBook Pro 16", "category": "laptops", "price": "$2,199", "description": "Large screen for maximum productivity.", "image": "/static/shop/images/products/macbook6.jpg"},
+    {"name": "Precision Elite", "category": "laptops", "price": "$1,850", "description": "Top tier Dell workstation performance.", "image": "/static/shop/images/products/precisioncomputer.webp"},
+
+    # --- PHONES (21 items) ---
+    {"name": "iPhone 17 Pro Max", "category": "phones", "price": "$1,299", "description": "The next generation of intelligence and speed.", "image": "/static/shop/images/products/iphone17.jpg", "hot": True},
+    {"name": "Samsung Galaxy S26 Ultra", "category": "phones", "price": "$1,399", "description": "The peak of mobile photography and power.", "image": "/static/shop/images/products/s26ultra.jpg", "hot": True},
+    {"name": "iPhone 16 Gold", "category": "phones", "price": "$999", "description": "Elegance meets performance.", "image": "/static/shop/images/products/iphone.webp", "hot": True},
+    {"name": "Samsung Note 23 Plus", "category": "phones", "price": "$950", "description": "Designed for productivity with S-Pen support.", "image": "/static/shop/images/products/notephone23.jpg", "hot": True},
+    {"name": "Infinix Zero Pro", "category": "phones", "price": "$450", "description": "Premium features at an accessible price point.", "image": "/static/shop/images/products/nfnxmobile.jpg"},
+    {"name": "Samsung S26 FE", "category": "phones", "price": "$799", "description": "Fan favorite features in a new design.", "image": "/static/shop/images/products/s26.jpg"},
+    {"name": "iPhone 17 Base", "category": "phones", "price": "$899", "description": "Simple, powerful, and beautiful.", "image": "/static/shop/images/products/iphone177.jpg"},
+    {"name": "iPhone 15 Colors", "category": "phones", "price": "$799", "description": "Available in multiple vibrant colors.", "image": "/static/shop/images/products/iphone-15-colors-1.webp"},
+    {"name": "Classic iPhone", "category": "phones", "price": "$599", "description": "Reliable and familiar iOS experience.", "image": "/static/shop/images/products/iphone.jpg"},
+    {"name": "iPhone Pro Edition", "category": "phones", "price": "$1,099", "description": "Professional grade mobile camera.", "image": "/static/shop/images/products/iphone.png"},
+    {"name": "iPhone 16 Girl Edition", "category": "phones", "price": "$999", "description": "Special edition for fashion lovers.", "image": "/static/shop/images/products/iphone16girl.jpg"},
+    {"name": "iPhone Handheld", "category": "phones", "price": "$850", "description": "Compact design for one-hand use.", "image": "/static/shop/images/products/iphonehand.jpg"},
+    {"name": "iPhone Handheld V2", "category": "phones", "price": "$899", "description": "Improved grip and battery life.", "image": "/static/shop/images/products/iphonehand2.jpg"},
+    {"name": "Note Phone Classic", "category": "phones", "price": "$750", "description": "Large display for media consumption.", "image": "/static/shop/images/products/notephone.jpg"},
+    {"name": "Mobile Pro 43", "category": "phones", "price": "$400", "description": "Solid mid-range performance.", "image": "/static/shop/images/products/phone43.jpg"},
+    {"name": "Phone of Beauty", "category": "phones", "price": "$1,150", "description": "Exquisite design and screen.", "image": "/static/shop/images/products/phoneofbeauty.jpg"},
+    {"name": "Phone of S", "category": "phones", "price": "$950", "description": "Speed and simplicity combined.", "image": "/static/shop/images/products/phoneofs.jpg"},
+    {"name": "Phone S26 Pro", "category": "phones", "price": "$1,250", "description": "High-end specs for power users.", "image": "/static/shop/images/products/phones26.jpg"},
+    {"name": "Samsung Mobile Elite", "category": "phones", "price": "$1,100", "description": "Premium Samsung build quality.", "image": "/static/shop/images/products/samsungmobile.jpg"},
+    {"name": "S-Model Phone", "category": "phones", "price": "$850", "description": "Stylish and modern smartphone.", "image": "/static/shop/images/products/smodelphone.jpg"},
+    {"name": "Generic Smart Phone", "category": "phones", "price": "$300", "description": "All essential features included.", "image": "/static/shop/images/products/images.jpg"},
+
+    # --- AFGHANI CLOTHES (20 items) ---
+    {"name": "Royal Afghani Gand", "category": "afghani-clothes", "price": "$180", "description": "Exquisite hand-embroidered traditional luxury dress.", "image": "/static/shop/images/products/gand.jpg", "hot": True},
+    {"name": "Hazaragi Cultural Dress", "category": "afghani-clothes", "price": "$110", "description": "Vibrant traditional Hazaragi attire.", "image": "/static/shop/images/products/hazaragiclothes.jpg", "hot": True},
+    {"name": "Silk Embroidered Gand", "category": "afghani-clothes", "price": "$140", "description": "Soft silk with intricate needlework.", "image": "/static/shop/images/products/gand1.jpg", "hot": True},
+    {"name": "Kandahari Khamak Gand", "category": "afghani-clothes", "price": "$160", "description": "Famous Kandahari hand-stitched embroidery.", "image": "/static/shop/images/products/gand3.jpg", "hot": True},
+    {"name": "Afghan Party Wear", "category": "afghani-clothes", "price": "$130", "description": "Modern twist on traditional Afghan fashion.", "image": "/static/shop/images/products/girlcloth.jpg"},
+    {"name": "Hazaragi Party Set", "category": "afghani-clothes", "price": "$125", "description": "Perfect for weddings and special occasions.", "image": "/static/shop/images/products/hazaragicllothes2.jpg"},
+    {"name": "Traditional Velvet Gand", "category": "afghani-clothes", "price": "$155", "description": "Deep red velvet with gold embroidery.", "image": "/static/shop/images/products/gand5.jpg"},
+    {"name": "Special Edition Gand", "category": "afghani-clothes", "price": "$200", "description": "Premium hand-made cultural attire.", "image": "/static/shop/images/products/671704370_122109552285122650_4200145947817601766_n.jpg"},
+    {"name": "Kochi Style Gand", "category": "afghani-clothes", "price": "$145", "description": "Traditional Kochi tribal embroidery.", "image": "/static/shop/images/products/gand2.jpg"},
+    {"name": "Silk Party Gand", "category": "afghani-clothes", "price": "$135", "description": "Elegant silk dress for celebrations.", "image": "/static/shop/images/products/gand4.jpg"},
+    {"name": "Classic Chapan", "category": "afghani-clothes", "price": "$95", "description": "Traditional Afghan outer garment.", "image": "/static/shop/images/products/gand6.jpg"},
+    {"name": "Royal Chapan", "category": "afghani-clothes", "price": "$120", "description": "High quality velvet chapan.", "image": "/static/shop/images/products/gand8.jpg"},
+    {"name": "Afghan Girl Cloth", "category": "afghani-clothes", "price": "$85", "description": "Beautiful dress for young girls.", "image": "/static/shop/images/products/girlcloth3.jpg"},
+    {"name": "Velvet Girl Dress", "category": "afghani-clothes", "price": "$90", "description": "Soft velvet dress with patterns.", "image": "/static/shop/images/products/girlclothes5.jpg"},
+    {"name": "Modern Gand V7", "category": "afghani-clothes", "price": "$165", "description": "Newest design in our cultural collection.", "image": "/static/shop/images/products/gnad7.jpg"},
+    {"name": "Hazaragi Cultural V3", "category": "afghani-clothes", "price": "$115", "description": "Authentic Hazaragi embroidery.", "image": "/static/shop/images/products/hazaragiclothes3.jpg"},
+    {"name": "Hazaragi Cultural V4", "category": "afghani-clothes", "price": "$120", "description": "Intricate hand-made patterns.", "image": "/static/shop/images/products/hazaragiclothes4.jpg"},
+    {"name": "Traditional Hazar Clothes", "category": "afghani-clothes", "price": "$105", "description": "Classic Hazaragi style attire.", "image": "/static/shop/images/products/hazarclothes.jpg"},
+    {"name": "Cultural Chapan Cao", "category": "afghani-clothes", "price": "$110", "description": "Unique regional style chapan.", "image": "/static/shop/images/products/cao.png"},
+
+    # --- HOME & KITCHEN (13 items) ---
+    {"name": "Istalif Ceramic Bowl", "category": "home-kitchen", "price": "$55", "description": "Authentic turquoise-glazed pottery from Istalif.", "image": "/static/shop/images/products/istalif.jpg", "hot": True},
+    {"name": "Traditional Afghan Teapot", "category": "home-kitchen", "price": "$40", "description": "Classic design for serving green tea.", "image": "/static/shop/images/products/teapot.jpg"},
+    {"name": "Copper Cooking Boiler", "category": "home-kitchen", "price": "$85", "description": "Hand-hammered copper for authentic cooking.", "image": "/static/shop/images/products/boiler.jpg"},
+    {"name": "Engraved Kitchen Pot", "category": "home-kitchen", "price": "$65", "description": "Beautifully engraved serving pot.", "image": "/static/shop/images/products/pot94.jpg"},
+    {"name": "Afghan Ceramic Bowl Set", "category": "home-kitchen", "price": "$45", "description": "Hand-painted ceramic bowls for your table.", "image": "/static/shop/images/products/bowl.jpg"},
+    {"name": "Ceramic Tea Pot 00", "category": "home-kitchen", "price": "$35", "description": "Elegant white ceramic teapot with traditional patterns.", "image": "/static/shop/images/products/teapot00.jpg"},
+    {"name": "Blue Istalif Bowl", "category": "home-kitchen", "price": "$50", "description": "Deep blue glazed ceramic bowl.", "image": "/static/shop/images/products/boel.jpg"},
+    {"name": "Large Cooking Boiler", "category": "home-kitchen", "price": "$95", "description": "Large capacity copper boiler.", "image": "/static/shop/images/products/boiler45.jpg"},
+    {"name": "Small Ceramic Bowl", "category": "home-kitchen", "price": "$25", "description": "Perfect for sides and sauces.", "image": "/static/shop/images/products/bowel.jpg"},
+    {"name": "Patterned Bowl 34", "category": "home-kitchen", "price": "$30", "description": "Beautifully patterned serving bowl.", "image": "/static/shop/images/products/bowl34.jpg"},
+    {"name": "Modern Ceramic Bowl", "category": "home-kitchen", "price": "$40", "description": "Sleek modern ceramic design.", "image": "/static/shop/images/products/bowl44.webp"},
+    {"name": "Bowliton Special", "category": "home-kitchen", "price": "$60", "description": "Limited edition kitchen bowl.", "image": "/static/shop/images/products/bowliton.webp"},
+    {"name": "Traditional Teapot 5", "category": "home-kitchen", "price": "$45", "description": "Classic Afghan tea set piece.", "image": "/static/shop/images/products/teapot5.jpg"},
+    {"name": "Kitchen Poy", "category": "home-kitchen", "price": "$50", "description": "Handcrafted kitchen essential.", "image": "/static/shop/images/products/poy.webp"},
 ]
 
 
@@ -337,43 +105,71 @@ CATEGORIES = [
 ]
 
 
-def home(request):
-    featured_products = [
-        item
-        for item in PRODUCTS
-        if item["category"] in ("afghani-clothes", "home-kitchen")
-    ][:8]
+# Helper to get products with slugs
+def get_products():
+    for i, item in enumerate(PRODUCTS):
+        item['id'] = i
+        item['slug'] = slugify(item['name'])
+    return PRODUCTS
+
+def index(request):
+    products = get_products()
+    featured_products = [p for p in products if p.get("hot")]
     return render(
         request,
         "shop/index.html",
-        {"featured_products": featured_products, "categories": CATEGORIES},
+        {"categories": CATEGORIES, "featured_products": featured_products},
     )
 
+def products(request):
+    query = request.GET.get('q')
+    all_products = get_products()
+    
+    if query:
+        filtered_products = [
+            p for p in all_products 
+            if query.lower() in p['name'].lower() or query.lower() in p['description'].lower()
+        ]
+        context = {
+            "products": filtered_products,
+            "query": query,
+            "title": f"SEARCH RESULTS FOR '{query}'"
+        }
+    else:
+        context = {
+            "products": all_products,
+            "title": "NEW IN & BESTSELLERS"
+        }
+    return render(request, "shop/products.html", context)
 
-def categories(request):
-    return render(request, "shop/categories.html", {"categories": CATEGORIES})
-
-
-def category_detail(request, slug):
-    category = next((item for item in CATEGORIES if item["slug"] == slug), None)
-    if category is None:
-        return render(request, "shop/not_found.html", status=404)
-
-    products = [item for item in PRODUCTS if item["category"] == slug]
+def category_detail(request, category_slug):
+    category = next((c for c in CATEGORIES if c["slug"] == category_slug), None)
+    if not category:
+        return render(request, "shop/not_found.html")
+    
+    all_products = get_products()
+    category_products = [p for p in all_products if p["category"] == category_slug]
     return render(
         request,
         "shop/category_detail.html",
-        {"category": category, "products": products},
+        {"category": category, "products": category_products},
     )
 
+def hot_products(request):
+    all_products = get_products()
+    hot_items = [item for item in all_products if item.get("hot")]
+    return render(request, "shop/hot.html", {"products": hot_items})
 
-def all_products(request):
-    return render(
-        request,
-        "shop/products.html",
-        {"products": PRODUCTS, "categories": CATEGORIES},
-    )
-
+def product_detail(request, product_slug):
+    all_products = get_products()
+    product = next((p for p in all_products if p["slug"] == product_slug), None)
+    if not product:
+        return render(request, "shop/not_found.html")
+    
+    # Get related products (same category)
+    related = [p for p in all_products if p["category"] == product["category"] and p["slug"] != product_slug][:4]
+    
+    return render(request, "shop/product_detail.html", {"product": product, "related": related})
 
 def about(request):
     return render(request, "shop/about.html")
@@ -381,3 +177,11 @@ def about(request):
 
 def contact(request):
     return render(request, "shop/contact.html")
+
+
+def login_view(request):
+    return render(request, "shop/login.html")
+
+
+def register_view(request):
+    return render(request, "shop/register.html")
