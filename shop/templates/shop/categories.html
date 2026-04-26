@@ -3,26 +3,24 @@
 {% block title %}Categories - Shanbe Bazaar{% endblock %}
 
 {% block content %}
-<section class="mb-4">
-  <h1 class="mb-2">All Categories</h1>
-  <p class="text-secondary mb-0">
-    Choose the type of products you want to explore.
-  </p>
+<section class="container pt-4">
+  <div class="page-header">
+    <h1>Browse Categories</h1>
+    <p>Pick a department to discover products and offers.</p>
+  </div>
 </section>
 
-<section class="row g-4">
+<section class="container">
+  <div class="row g-3">
   {% for category in categories %}
-  <div class="col-md-4">
-    <div class="card h-100 border-0 shadow-sm">
-      <div class="card-body">
-        <h2 class="h5">{{ category.name }}</h2>
-        <p class="text-secondary">{{ category.description }}</p>
-        <a href="/categories/{{ category.slug }}/" class="btn btn-dark btn-sm">
-          Open Category
-        </a>
-      </div>
-    </div>
+  <div class="col-sm-6 col-lg-3">
+    <a href="/categories/{{ category.slug }}/" class="category-tile h-100">
+      <h2>{{ category.name }}</h2>
+      <p>{{ category.description }}</p>
+      <span>Open category</span>
+    </a>
   </div>
   {% endfor %}
+</div>
 </section>
 {% endblock %}

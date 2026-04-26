@@ -12,50 +12,66 @@
     <link rel="stylesheet" href="{% static 'shop/index.css' %}" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/">Shanbe Bazaar</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNav"
-          aria-controls="mainNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/products/">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/contact/">Contact</a>
-            </li>
-          </ul>
+    <header class="site-header">
+      <div class="header-top">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center gap-3 py-2">
+            <a class="brand-logo" href="/">shanbe bazaar | بازار شنبه</a>
+            <form class="search-box flex-grow-1">
+              <input type="text" class="search-input" placeholder="Search Afghan clothes, kitchen items, and more" />
+              <button type="button" class="search-btn">Search</button>
+            </form>
+            <div class="header-meta d-flex gap-3">
+              <div class="meta-item">
+                <span class="meta-small">Language</span>
+                <strong>EN | دری | پښتو</strong>
+              </div>
+              <div class="meta-item">
+                <span class="meta-small">Currency</span>
+                <strong>$ USD</strong>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
+      <nav class="header-nav">
+        <div class="container">
+          <ul class="nav-list mb-0">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products/">Today Offers</a></li>
+            <li><a href="/categories/">Categories</a></li>
+            <li><a href="/categories/laptops/">Laptops</a></li>
+            <li><a href="/categories/phones/">Phones</a></li>
+            <li><a href="/categories/afghani-clothes/">Afghani Clothes</a></li>
+            <li><a href="/categories/home-kitchen/">Home & Kitchen</a></li>
+            <li><a href="/contact/">Customer Service</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-    <main class="py-5">
-      <div class="container">{% block content %}{% endblock %}</div>
+    <main class="pb-5">
+      {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-5 border-top border-secondary-subtle">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <p class="mb-2 mb-md-0">Built for class project - Shanbe Bazaar</p>
-        <p class="mb-0 text-secondary">Technology, Phones, and Afghani Gand</p>
+    <footer class="site-footer mt-5">
+      <div class="container py-4">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <h5 class="footer-title">Shanbe Bazaar</h5>
+            <p class="footer-text mb-0">
+              Afghan-inspired marketplace for traditional fashion and home essentials.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h5 class="footer-title">Shop</h5>
+            <p class="footer-text mb-0">Laptops, Phones, Afghani Clothes, Home & Kitchen</p>
+          </div>
+          <div class="col-md-4">
+            <h5 class="footer-title">Support</h5>
+            <p class="footer-text mb-0">Contact and customer help are available every day.</p>
+          </div>
+        </div>
       </div>
     </footer>
 
