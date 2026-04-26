@@ -1,16 +1,56 @@
-{% load static %} {% comment %} this line is for loading the static files {%
-endcomment %}
-<!DOCTYPE html>
-<html>
-  <head>
-    {% comment %} linking the css file to template {% endcomment %}
+{% extends "shop/base.html" %}
 
-    <link rel="stylesheet" href="{% static 'shop/index.css' %}" />
+{% block title %}Home - Shanbe Bazaar{% endblock %}
 
-    <title>Our Selling Website</title>
-  </head>
-  <body>
-    <h1>Welcome to our Store!</h1>
-    <p>This is the frontend working with Django.</p>
-  </body>
-</html>
+{% block content %}
+<section class="p-5 mb-5 rounded-4 hero-gradient text-white">
+  <h1 class="display-5 fw-bold">Welcome to Shanbe Bazaar</h1>
+  <p class="lead mb-4">
+    Your trusted online market for technology and traditional Afghan fashion.
+  </p>
+  <a href="/products/" class="btn btn-warning btn-lg fw-semibold">Shop Now</a>
+</section>
+
+<section class="mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h3 mb-0">Shop by Category</h2>
+    <a href="/categories/" class="btn btn-outline-dark btn-sm">View all</a>
+  </div>
+  <div class="row g-4">
+    {% for category in categories %}
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h3 class="h5 card-title">{{ category.name }}</h3>
+          <p class="card-text text-secondary">{{ category.description }}</p>
+          <a
+            href="/categories/{{ category.slug }}/"
+            class="btn btn-outline-primary btn-sm"
+          >
+            Explore
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <h2 class="h3 mb-3">Featured Products</h2>
+  <div class="row g-4">
+    {% for item in featured_products %}
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h3 class="h5 card-title">{{ item.name }}</h3>
+          <p class="small text-uppercase text-muted">{{ item.category }}</p>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="fw-bold text-success mb-0">{{ item.price }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
