@@ -67,13 +67,15 @@
       <nav class="lush-nav border-top border-bottom d-none d-lg-block">
         <div class="container-fluid px-5">
           <ul class="nav justify-content-center py-2">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">NEW IN</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'category_detail' 'laptops' %}">LAPTOPS</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'category_detail' 'phones' %}">PHONES</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'category_detail' 'afghani-clothes' %}">CLOTHES</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'category_detail' 'home-kitchen' %}">HOME & KITCHEN</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'hot_products' %}">HOT DEALS</a></li>
+            {% if request.path != '/' %}
+            <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">HOME</a></li>
+            {% endif %}
+            <li class="nav-item"><a class="nav-link {% if request.path == '/products/' %}active{% endif %}" href="{% url 'products' %}">NEW IN</a></li>
+            <li class="nav-item"><a class="nav-link {% if 'laptops' in request.path %}active{% endif %}" href="{% url 'category_detail' 'laptops' %}">LAPTOPS</a></li>
+            <li class="nav-item"><a class="nav-link {% if 'phones' in request.path %}active{% endif %}" href="{% url 'category_detail' 'phones' %}">PHONES</a></li>
+            <li class="nav-item"><a class="nav-link {% if 'afghani-clothes' in request.path %}active{% endif %}" href="{% url 'category_detail' 'afghani-clothes' %}">CLOTHES</a></li>
+            <li class="nav-item"><a class="nav-link {% if 'home-kitchen' in request.path %}active{% endif %}" href="{% url 'category_detail' 'home-kitchen' %}">HOME & KITCHEN</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.path == '/hot/' %}active{% endif %}" href="{% url 'hot_products' %}">HOT DEALS</a></li>
           </ul>
         </div>
       </nav>
