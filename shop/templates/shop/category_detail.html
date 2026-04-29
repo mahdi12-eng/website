@@ -1,16 +1,22 @@
-{% extends "shop/base.html" %}
-
-{% block title %}{{ category.name }} - PanjShanbe Bazaar{% endblock %}
-
-{% block content %}
+{% extends "shop/base.html" %}{% load static %} {% block title %}{{
+category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
 <!-- CATEGORY SLIDESHOW -->
-<div id="categoryCarousel" class="carousel slide lush-carousel" style="height: 40vh;" data-bs-ride="carousel">
+<div
+  id="categoryCarousel"
+  class="carousel slide lush-carousel"
+  style="height: 40vh"
+  data-bs-ride="carousel"
+>
   <div class="carousel-inner h-100">
     {% for item in products|slice:":3" %}
     <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
-      <img src="{{ item.image }}" class="d-block w-100 h-100 object-fit-cover opacity-50" alt="{{ item.name }}">
-      <div class="carousel-caption-lush" style="bottom: 10%;">
-        <h2 style="font-size: 3rem;">{{ category.name }}<br>COLLECTION</h2>
+      <img
+        src="{% static 'shop/images/'|add:item.image %}"
+        class="d-block w-100 h-100 object-fit-cover opacity-50"
+        alt="{{ item.name }}"
+      />
+      <div class="carousel-caption-lush" style="bottom: 10%">
+        <h2 style="font-size: 3rem">{{ category.name }}<br />COLLECTION</h2>
       </div>
     </div>
     {% endfor %}
@@ -31,34 +37,52 @@
         <div class="lush-card-base">
           <div class="lush-img-container">
             <a href="{% url 'product_detail' item.slug %}">
-              <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+              <img
+                src="{% static 'shop/images/products/'|add:item.image %}"
+                alt="{{ item.name }}"
+                class="img-fluid"
+              />
             </a>
             {% if item.hot %}
             <div class="hot-badge">HOT</div>
             {% endif %}
           </div>
           <div class="lush-product-info p-2 p-md-3">
-            <p class="category-label d-none d-md-block">{{ item.category|upper }}</p>
-            <h3 class="product-name" style="font-size: 1rem;"><a href="{% url 'product_detail' item.slug %}" class="text-black text-decoration-none">{{ item.name }}</a></h3>
-            <p class="product-price mb-0" style="font-size: 0.9rem;">{{ item.price }}</p>
+            <p class="category-label d-none d-md-block">
+              {{ item.category|upper }}
+            </p>
+            <h3 class="product-name" style="font-size: 1rem">
+              <a
+                href="{% url 'product_detail' item.slug %}"
+                class="text-black text-decoration-none"
+                >{{ item.name }}</a
+              >
+            </h3>
+            <p class="product-price mb-0" style="font-size: 0.9rem">
+              ${{ item.price }}
+            </p>
           </div>
         </div>
 
         <!-- FLYOUT CARD -->
         <div class="lush-card-flyout">
-          <img src="{{ item.image }}" alt="{{ item.name }}" class="flyout-banner">
+          <img
+            src="{% static 'shop/images/products/'|add:item.image %}"
+            alt="{{ item.name }}"
+            class="flyout-banner"
+          />
           <div class="flyout-body">
             <h3 class="flyout-title">{{ item.name }}</h3>
-            <p class="flyout-meta">{{ item.category|upper }} • 4.9 ★ • Premium</p>
+            <p class="flyout-meta">
+              {{ item.category|upper }} • 4.9 ★ • Premium
+            </p>
             <p class="flyout-description">
-              {% if item.description %}
-                {{ item.description }}
-              {% else %}
-                Experience the best quality with {{ item.name }}. Designed for performance and style.
-              {% endif %}
+              {% if item.description %} {{ item.description }} {% else %}
+              Experience the best quality with {{ item.name }}. Designed for
+              performance and style. {% endif %}
             </p>
             <div class="flyout-footer">
-              <span class="fs-4 fw-bold">{{ item.price }}</span>
+              <span class="fs-4 fw-bold">${{ item.price }}</span>
               <button class="flyout-btn">ADD TO BAG</button>
             </div>
           </div>
@@ -68,7 +92,9 @@
     {% empty %}
     <div class="col-12 text-center py-5">
       <h3 class="text-muted">No products found in this category.</h3>
-      <a href="{% url 'products' %}" class="lush-btn-black mt-3">SHOP ALL PRODUCTS</a>
+      <a href="{% url 'products' %}" class="lush-btn-black mt-3"
+        >SHOP ALL PRODUCTS</a
+      >
     </div>
     {% endfor %}
   </div>

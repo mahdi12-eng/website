@@ -1,21 +1,31 @@
-{% extends "shop/base.html" %}
-
-{% block title %}All Products - PanjShanbe Bazaar{% endblock %}
-
-{% block content %}
+{% extends "shop/base.html" %} {% block title %}All Products - PanjShanbe
+Bazaar{% endblock %} {% block content %}
 <!-- PRODUCTS SLIDESHOW -->
-<div id="productsCarousel" class="carousel slide lush-carousel" style="height: 50vh;" data-bs-ride="carousel">
+<div
+  id="productsCarousel"
+  class="carousel slide lush-carousel"
+  style="height: 50vh"
+  data-bs-ride="carousel"
+>
   <div class="carousel-inner h-100">
     <div class="carousel-item h-100 active">
-      <img src="/static/shop/images/products/s26ultra.jpg" class="d-block w-100 h-100 object-fit-cover opacity-50" alt="Tech">
-      <div class="carousel-caption-lush" style="bottom: 15%;">
-        <h2 style="font-size: 4rem;">NEW<br>ARRIVALS</h2>
+      <img
+        src="/static/shop/images/products/s26ultra.jpg"
+        class="d-block w-100 h-100 object-fit-cover opacity-50"
+        alt="Tech"
+      />
+      <div class="carousel-caption-lush" style="bottom: 15%">
+        <h2 style="font-size: 4rem">NEW<br />ARRIVALS</h2>
       </div>
     </div>
     <div class="carousel-item h-100">
-      <img src="/static/shop/images/products/hazaragiclothes.jpg" class="d-block w-100 h-100 object-fit-cover opacity-50" alt="Clothes">
-      <div class="carousel-caption-lush" style="bottom: 15%;">
-        <h2 style="font-size: 4rem;">CULTURAL<br>PRIDE</h2>
+      <img
+        src="/static/shop/images/products/hazaragiclothes.jpg"
+        class="d-block w-100 h-100 object-fit-cover opacity-50"
+        alt="Clothes"
+      />
+      <div class="carousel-caption-lush" style="bottom: 15%">
+        <h2 style="font-size: 4rem">CULTURAL<br />PRIDE</h2>
       </div>
     </div>
   </div>
@@ -25,7 +35,9 @@
   <div class="mb-5 px-lg-5">
     <h2 class="lush-title">{{ title }}</h2>
     {% if query %}
-    <p class="lead opacity-75">Found {{ products|length }} products matching your search.</p>
+    <p class="lead opacity-75">
+      Found {{ products|length }} products matching your search.
+    </p>
     {% endif %}
   </div>
 
@@ -37,31 +49,49 @@
         <div class="lush-card-base">
           <div class="lush-img-container">
             <a href="{% url 'product_detail' item.slug %}">
-              <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+              <img
+                src="{{shop/images/products|add:item.image }}"
+                alt="{{ item.name }}"
+                class="img-fluid"
+              />
             </a>
             {% if item.hot %}
             <div class="hot-badge">HOT</div>
             {% endif %}
           </div>
           <div class="lush-product-info p-2 p-md-3">
-            <p class="category-label d-none d-md-block">{{ item.category|upper }}</p>
-            <h3 class="product-name" style="font-size: 1rem;"><a href="{% url 'product_detail' item.slug %}" class="text-black text-decoration-none">{{ item.name }}</a></h3>
-            <p class="product-price mb-0" style="font-size: 0.9rem;">{{ item.price }}</p>
+            <p class="category-label d-none d-md-block">
+              {{ item.category|upper }}
+            </p>
+            <h3 class="product-name" style="font-size: 1rem">
+              <a
+                href="{% url 'product_detail' item.slug %}"
+                class="text-black text-decoration-none"
+                >{{ item.name }}</a
+              >
+            </h3>
+            <p class="product-price mb-0" style="font-size: 0.9rem">
+              {{ item.price }}
+            </p>
           </div>
         </div>
 
         <!-- FLYOUT CARD -->
         <div class="lush-card-flyout">
-          <img src="{{ item.image }}" alt="{{ item.name }}" class="flyout-banner">
+          <img
+            src="{{shop/images/products|add:item.image }}"
+            alt="{{ item.name }}"
+            class="flyout-banner"
+          />
           <div class="flyout-body">
             <h3 class="flyout-title">{{ item.name }}</h3>
-            <p class="flyout-meta">{{ item.category|upper }} • 4.9 ★ • Premium</p>
+            <p class="flyout-meta">
+              {{ item.category|upper }} • 4.9 ★ • Premium
+            </p>
             <p class="flyout-description">
-              {% if item.description %}
-                {{ item.description }}
-              {% else %}
-                Experience the best quality with {{ item.name }}. Designed for performance and style.
-              {% endif %}
+              {% if item.description %} {{ item.description }} {% else %}
+              Experience the best quality with {{ item.name }}. Designed for
+              performance and style. {% endif %}
             </p>
             <div class="flyout-footer">
               <span class="fs-4 fw-bold">{{ item.price }}</span>

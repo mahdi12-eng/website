@@ -63,7 +63,7 @@
     <div class="lush-product-card">
             <div class="lush-img-container">
               <a href="{% url 'product_detail' item.slug %}">
-                <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid">
+                <img src="{{shop/images/products|add:item.image }}" alt="{{ item.name }}" class="img-fluid">
               </a>
               {% if item.hot %}
               <div class="hot-badge">HOT</div>
