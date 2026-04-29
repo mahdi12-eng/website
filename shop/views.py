@@ -1,5 +1,11 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine("sqlite:///shop.db")
+Session = sessionmaker(bind=engine)
+session = Session()
 
 PRODUCTS = [
     # --- LAPTOPS (16 items) ---
