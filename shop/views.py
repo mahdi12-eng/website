@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("sqlite:///shop.db")
-Session = sessionmaker(bind=engine)
-session = Session()
+# from .models import Address, Categories, Customers, Feedbacks, Invoices
 
 PRODUCTS = [
     # --- LAPTOPS (16 items) ---
@@ -526,6 +522,13 @@ CATEGORIES = [
         "description": "Pots, dishes, tea sets, and Afghan home essentials.",
     },
 ]
+
+# for category in CATEGORIES:
+#     Categories.objects.create(
+#         slug=category["slug"],
+#         name=category["name"],
+#         description=category["description"],
+#     )
 
 
 # Helper to get products with slugs
