@@ -17,7 +17,7 @@ for product in Products.objects.all():
             "hot": True,  # Mark all as hot for demo
         }
     )
-
+#  finished populating PRODUCTS list from the database
 
 CATEGORIES = []
 for category in Categories.objects.all():
