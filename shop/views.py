@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
-# from .models import Address, Categories, Customers, Feedbacks, Invoices
+from .models import Address, Categories, Customers, Feedbacks, Invoices
 
 PRODUCTS = [
     # --- LAPTOPS (16 items) ---
