@@ -140,7 +140,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
           <div class="lush-img-container">
             <a href="{% url 'product_detail' item.slug %}">
               <img
-                src="{{shop/images/products|add:item.image }}"
+                src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
                 class="img-fluid"
               />
@@ -169,7 +169,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
         <!-- FLYOUT CARD (Shows on hover) -->
         <div class="lush-card-flyout">
           <img
-            src="{{shop/images/products|add:item.image }}"
+            src="{% static 'shop/images/products/'|add:item.image %}"
             alt="{{ item.name }}"
             class="flyout-banner"
           />

@@ -6,28 +6,31 @@ from .models import Address, Categories, Customers, Feedbacks, Invoices, Product
 PRODUCTS = [
     # --- LAPTOPS (16 items) ---
 ]
-for product in Products.objects.all():
-    PRODUCTS.append(
-        {
-            "name": product.name,
-            "category": product.category.slug,
-            "price": f"{product.price:,}",
-            "description": product.description,
-            "image": product.image,
-            "hot": True,  # Mark all as hot for demo
-        }
-    )
+if len(PRODUCTS) == 0:
+    for product in Products.objects.all():
+        PRODUCTS.append(
+            {
+                "name": product.name,
+                "category": product.category.slug,
+                "price": f"{product.price:,}",
+                "description": product.description,
+                "image": product.image,
+                "hot": True,  # Mark all as hot for demo
+            }
+        )
 #  finished populating PRODUCTS list from the database
 
 CATEGORIES = []
-for category in Categories.objects.all():
-    CATEGORIES.append(
-        {
-            "name": category.name,
-            "slug": category.slug,
-            "description": category.description,
-        }
-    )
+
+if len(CATEGORIES) == 0:
+    for category in Categories.objects.all():
+        CATEGORIES.append(
+            {
+                "name": category.name,
+                "slug": category.slug,
+                "description": category.description,
+            }
+        )
 
 
 def price_fixe(p):

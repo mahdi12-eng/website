@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "shop/base.html" %} {% load static %}
 
 {% block title %}{{ product.name }} - Panj Shanbe Bazaar{% endblock %}
 
@@ -16,7 +16,7 @@
     <!-- PRODUCT IMAGE -->
     <div class="col-lg-7">
       <div class="product-detail-img-wrapper bg-light p-4 border border-dark">
-        <img src="{{ product.image }}" alt="{{ product.name }}" class="img-fluid w-100">
+        <img src="{% static 'shop/images/products/'|add:product.image %}" alt="{{ product.name }}" class="img-fluid w-100">
       </div>
     </div>
 
@@ -63,7 +63,7 @@
     <div class="lush-product-card">
             <div class="lush-img-container">
               <a href="{% url 'product_detail' item.slug %}">
-                <img src="{{shop/images/products|add:item.image }}" alt="{{ item.name }}" class="img-fluid">
+                <img src="{% static 'shop/images/products/'|add:item.image %}" alt="{{ item.name }}" class="img-fluid">
               </a>
               {% if item.hot %}
               <div class="hot-badge">HOT</div>
