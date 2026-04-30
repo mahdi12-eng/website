@@ -10,7 +10,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
   <div class="carousel-inner h-100">
     <div class="carousel-item h-100 active">
       <img
-        src="{{ static 'shop/images/products/s26ultra.jpg' }}"
+        src="{% static 'shop/images/products/s26ultra.jpg' %}"
         class="d-block w-100 h-100 object-fit-cover opacity-50"
         alt="Tech"
       />
@@ -20,7 +20,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
     </div>
     <div class="carousel-item h-100">
       <img
-        src="{{ static 'shop/images/products/hazaragiclothes.jpg' }}"
+        src="{% static 'shop/images/products/hazaragiclothes.jpg' %}"
         class="d-block w-100 h-100 object-fit-cover opacity-50"
         alt="Clothes"
       />
@@ -50,7 +50,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
           <div class="lush-img-container">
             <a href="{% url 'product_detail' item.slug %}">
               <img
-                src="{{ static 'shop/images/products/'|add:item.image }}"
+                src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
                 class="img-fluid"
               />
@@ -79,7 +79,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
         <!-- FLYOUT CARD -->
         <div class="lush-card-flyout">
           <img
-            src="{{ static 'shop/images/products/'|add:item.image }}"
+            src="{% static 'shop/images/products/'|add:item.image %}"
             alt="{{ item.name }}"
             class="flyout-banner"
           />
