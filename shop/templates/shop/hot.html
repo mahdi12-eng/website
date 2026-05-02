@@ -36,11 +36,21 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
             >
               <h3 class="fw-black mb-3">WHY IT'S HOT</h3>
               <p class="mb-4 small">{{ product.description }}</p>
+
+              {% if controll %}
+              <a
+                class="lush-btn-white py-3"
+                href="{% url 'unhot' product.id %}"
+              >
+                Delete
+              </a>
+              {% else %}
               <a
                 href="{% url 'product_detail' product.slug %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >
+              {% endif %}
             </div>
           </div>
         </div>
