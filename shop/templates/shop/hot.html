@@ -16,7 +16,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center"
             >
               <a
-                href="{% url 'product_detail' product.slug %}"
+                href="{% url 'product_detail'  product.name|slugify %}"
                 class="mb-3 d-block"
               >
                 <img
@@ -46,7 +46,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               </a>
               {% else %}
               <a
-                href="{% url 'product_detail' product.slug %}"
+                href="{% url 'product_detail' product.name|slugify %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >

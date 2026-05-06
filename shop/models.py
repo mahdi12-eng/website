@@ -117,6 +117,9 @@ class Products(models.Model):
     amount_in_stock = models.IntegerField(blank=True, null=True)
     hot = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.pr_id}-{self.name}-{self.price}"
+
     class Meta:
         managed = False
         db_table = "products"

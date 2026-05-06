@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
+
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
 
 ADMIN_CONTROLL = False
@@ -118,26 +119,22 @@ def category_detail(request, category_slug):
 
 
 def hot_products(request):
-    print(PRODUCTS[0])
-    HOT_PRODUCTS = [
-        product for product in PRODUCTS if product["hot"]
-    ]  # filtering the hots
+    HOT_PRODUCTS = Products.objects.filter(hot=1)  # filtering the hots
     return render(
         request, "shop/hot.html", {"products": HOT_PRODUCTS, "controll": ADMIN_CONTROLL}
     )
 
 
 def delete_from_hots(req, id):
-    print(id)
     global PRODUCTS
     target = Products.objects.get(pr_id=id)
     target.hot = 0
     target.save()
     for product in PRODUCTS:
         if product["hot"] == True and product["id"] == id:
-            product["hot"] == False
+            product["hot"] = False
 
-    return hot_products(req)
+    return redirect("hot_products")
 
 
 def product_detail(request, product_slug):

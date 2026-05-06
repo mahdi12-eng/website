@@ -1,4 +1,5 @@
 from django.urls import path
+
 from . import views
 
 urlpatterns = [
@@ -19,6 +20,6 @@ urlpatterns = [
     path("hot/", views.hot_products, name="hot_products"),
     path("hot/unhot/<id>", views.delete_from_hots, name="unhot"),
     path("product/<slug:product_slug>/", views.product_detail, name="product_detail"),
-    path("admin-controll/", views.turn_admin),
-    path("admin-exite/", views.exite_admin),
+    path("admin-controll/", views.turn_admin, name="turn_admin"),
+    path("admin-exite/", views.exite_admin, name="exite_admin"),
 ]
