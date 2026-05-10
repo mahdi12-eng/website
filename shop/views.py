@@ -16,7 +16,7 @@ def get_products_from_db():
                 "id": product.pr_id,
                 "name": product.name,
                 "slug": slugify(product.name),
-                "category": product.category.slug,
+                "category": slugify(product.category.name),
                 "price": f"${product.price:,}",
                 "description": product.description,
                 "image": product.image,
@@ -36,7 +36,7 @@ if len(CATEGORIES) == 0:
         CATEGORIES.append(
             {
                 "name": category.name,
-                "slug": category.slug,
+                "slug": slugify(category.name),
                 "description": category.description,
             }
         )
