@@ -13,7 +13,6 @@ class Address(models.Model):
 
 class Categories(models.Model):
     ct_id = models.AutoField(primary_key=True, blank=True)
-    slug = models.TextField()
     name = models.TextField()
     description = models.TextField(blank=True)
 
@@ -26,11 +25,11 @@ class Customers(models.Model):
     cs_id = models.AutoField(primary_key=True, blank=True)
     cs_name = models.TextField()
     cs_lastname = models.TextField()
-    birth_date = models.TextField(blank=True)
-    email = models.TextField(blank=True, null=True)
+    birth_date = models.DateField(auto_now=False, auto_now_add=False)
+    email = models.EmailField(max_length=254)
     phone = models.TextField(blank=True, null=True)
     address = models.ForeignKey(Address, models.DO_NOTHING, db_column="address")
-    create_time = models.TextField()
+    create_time = models.DateTimeField(auto_now=False, auto_now_add=True)
     points = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -41,7 +40,7 @@ class Customers(models.Model):
 class Feedbacks(models.Model):
     fb_id = models.AutoField(primary_key=True, blank=True)
     customer = models.ForeignKey(Customers, models.DO_NOTHING, db_column="customer")
-    fb_date = models.TextField()
+    fb_date = models.DateField(auto_now=False, auto_now_add=True)
     feedback = models.TextField()
 
     class Meta:
@@ -77,7 +76,7 @@ class OrderDetail(models.Model):
 class Orders(models.Model):
     or_id = models.AutoField(primary_key=True, blank=True)
     customer = models.ForeignKey(Customers, models.DO_NOTHING, db_column="customer")
-    or_data = models.TextField()
+    or_data = models.DateTimeField(auto_now=False, auto_now_add=True)
     status = models.ForeignKey("Status", models.DO_NOTHING, db_column="status")
 
     class Meta:
@@ -98,7 +97,7 @@ class Payments(models.Model):
     py_id = models.AutoField(primary_key=True, blank=True)
     invoices_inv = models.ForeignKey(Invoices, models.DO_NOTHING)
     customers_cs = models.ForeignKey(Customers, models.DO_NOTHING)
-    py_date = models.TextField()
+    py_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     amount = models.IntegerField()
     method = models.ForeignKey(PaymentMethod, models.DO_NOTHING, db_column="method")
 
@@ -113,9 +112,9 @@ class Products(models.Model):
     category = models.ForeignKey(Categories, models.DO_NOTHING, db_column="category")
     price = models.IntegerField()
     description = models.TextField(blank=True, null=True)
-    image = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to="static/shop/images/products")
     amount_in_stock = models.IntegerField(blank=True, null=True)
-    hot = models.IntegerField(blank=True, null=True)
+    hot = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.pr_id}-{self.name}-{self.price}"

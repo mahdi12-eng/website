@@ -29,7 +29,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               <h3 class="fw-black mb-1" style="font-size: 1.5rem">
                 {{ product.name }}
               </h3>
-              <p class="fs-4 fw-bold mb-0">{{ product.price }}</p>
+              <p class="fs-4 fw-bold mb-0">${{ product.price }}</p>
             </div>
             <div
               class="hot-card-back bg-black text-white p-4 d-flex flex-column justify-content-center"
@@ -56,7 +56,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
         </div>
         <div class="product-info-static text-center mt-4">
           <h5 class="fw-black mb-1">{{ product.name }}</h5>
-          <p class="text-muted fw-bold">{{ product.price }}</p>
+          <p class="text-muted fw-bold">${{ product.price }}</p>
         </div>
       </div>
       {% endfor %}
