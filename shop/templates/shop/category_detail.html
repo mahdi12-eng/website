@@ -59,7 +59,7 @@ category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
               >
             </h3>
             <p class="product-price mb-0" style="font-size: 0.9rem">
-              ${{ item.price }}
+              {{ item.price }}
             </p>
           </div>
         </div>
@@ -82,7 +82,7 @@ category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
               performance and style. {% endif %}
             </p>
             <div class="flyout-footer">
-              <span class="fs-4 fw-bold">${{ item.price }}</span>
+              <span class="fs-4 fw-bold"> {{ item.price }}</span>
               <button class="flyout-btn">ADD TO BAG</button>
             </div>
           </div>

@@ -1,28 +1,35 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
+
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
 
-PRODUCTS = [
-    # --- LAPTOPS (16 items) ---
-]
-if len(PRODUCTS) == 0:
+ADMIN_CONTROLL = False
+
+
+def get_products_from_db():
+    products_list = []
+
     for product in Products.objects.all():
-        PRODUCTS.append(
+        products_list.append(
             {
                 "id": product.pr_id,
                 "name": product.name,
                 "slug": slugify(product.name),
                 "category": product.category.slug,
-                "price": f"{product.price:,}",
+                "price": f"${product.price:,}",
                 "description": product.description,
                 "image": product.image,
-                "hot": True,  # Mark all as hot for demo
+                "hot": True if product.hot == 1 else False,
             }
         )
+    return products_list
+
+
 #  finished populating PRODUCTS list from the database
 
 CATEGORIES = []
+PRODUCTS = get_products_from_db()
 
 if len(CATEGORIES) == 0:
     for category in Categories.objects.all():
@@ -42,10 +49,21 @@ def price_fixe(p):
 # Helper to get products with slugs
 # def get_products():
 
+
 #     for i, item in enumerate(PRODUCTS):
 #         item["id"] = i
 #         item["slug"] = slugify(item["name"])
 #     return PRODUCTS
+def exite_admin(req):
+    global ADMIN_CONTROLL
+    ADMIN_CONTROLL = False
+    return index(req)
+
+
+def turn_admin(request):
+    global ADMIN_CONTROLL
+    ADMIN_CONTROLL = True
+    return index(request)
 
 
 def index(request):
@@ -56,7 +74,15 @@ def index(request):
     return render(
         request,
         "shop/index.html",
+<<<<<<< HEAD
         {"categories": clean_categories, "featured_products": featured_products},
+=======
+        {
+            "categories": CATEGORIES,
+            "featured_products": featured_products,
+            "controll": ADMIN_CONTROLL,
+        },
+>>>>>>> 625ec4a0d36b4366b88f5c321daf45fc25ec4f63
     )
 
 
@@ -100,11 +126,26 @@ def category_detail(request, category_slug):
     )
 
 
+# ---------------------- Hot Section -----------------#
+
+
 def hot_products(request):
-    # all_products = get_products()
-    # hot_items = [item for item in PRODUCTS if item.get("hot")]
-    # return render(request, "shop/hot.html", {"products": hot_items})
-    return render(request, "shop/hot.html", {"products": PRODUCTS})
+    HOT_PRODUCTS = Products.objects.filter(hot=1)  # filtering the hots
+    return render(
+        request, "shop/hot.html", {"products": HOT_PRODUCTS, "controll": ADMIN_CONTROLL}
+    )
+
+
+def delete_from_hots(req, id):
+    global PRODUCTS
+    target = Products.objects.get(pr_id=id)
+    target.hot = 0
+    target.save()
+    for product in PRODUCTS:
+        if product["hot"] == True and product["id"] == id:
+            product["hot"] = False
+
+    return redirect("hot_products")
 
 
 def product_detail(request, product_slug):

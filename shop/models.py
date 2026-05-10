@@ -108,13 +108,17 @@ class Payments(models.Model):
 
 
 class Products(models.Model):
-    pr_id = models.AutoField(primary_key=True, blank=True)
+    pr_id = models.AutoField(primary_key=True)
     name = models.TextField()
     category = models.ForeignKey(Categories, models.DO_NOTHING, db_column="category")
     price = models.IntegerField()
     description = models.TextField(blank=True, null=True)
     image = models.TextField(blank=True, null=True)
     amount_in_stock = models.IntegerField(blank=True, null=True)
+    hot = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.pr_id}-{self.name}-{self.price}"
 
     class Meta:
         managed = False

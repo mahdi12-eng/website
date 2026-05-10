@@ -185,13 +185,21 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
             </p>
             <div class="flyout-footer">
               <span class="fs-4 fw-bold">{{ item.price }}</span>
+
+              {% if controll %}
+              <button class="flyout-btn">DELETE</button>
+              <button class="flyout-btn">UPDATE</button>
+              {% else %}
               <button class="flyout-btn">ADD TO BAG</button>
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% if controll %}
+    <button class="flyout-btn">Add Product</button>
+    {% endif %}
   </div>
 </section>
 
