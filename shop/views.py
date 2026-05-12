@@ -74,15 +74,11 @@ def index(request):
     return render(
         request,
         "shop/index.html",
-<<<<<<< HEAD
-        {"categories": clean_categories, "featured_products": featured_products},
-=======
         {
             "categories": CATEGORIES,
             "featured_products": featured_products,
             "controll": ADMIN_CONTROLL,
         },
->>>>>>> 625ec4a0d36b4366b88f5c321daf45fc25ec4f63
     )
 
 
