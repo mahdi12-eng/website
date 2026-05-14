@@ -94,64 +94,7 @@
       </div>
 
       <!-- MAIN NAVIGATION BAR (DESKTOP) -->
-      <nav class="lush-nav border-top border-bottom d-none d-lg-block">
-        <div class="container-fluid px-5">
-          <ul class="nav justify-content-center py-2">
-            {% if request.path != '/' %}
-            <li class="nav-item">
-              <a
-                class="nav-link {% if request.path == '/' %}active{% endif %}"
-                href="{% url 'home' %}"
-                >HOME</a
-              >
-            </li>
-            {% endif %}
-            <li class="nav-item">
-              <a
-                class="nav-link {% if request.path == '/products/' %}active{% endif %}"
-                href="{% url 'products' %}"
-                >NEW IN</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if 'laptops' in request.path %}active{% endif %}"
-                href="{% url 'category_detail' 'laptops' %}"
-                >LAPTOPS</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if 'phones' in request.path %}active{% endif %}"
-                href="{% url 'category_detail' 'phones' %}"
-                >PHONES</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if 'afghani-clothes' in request.path %}active{% endif %}"
-                href="{% url 'category_detail' 'afghani-clothes' %}"
-                >CLOTHES</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if 'home-kitchen' in request.path %}active{% endif %}"
-                href="{% url 'category_detail' 'home-kitchen' %}"
-                >HOME & KITCHEN</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if request.path == '/hot/' %}active{% endif %}"
-                href="{% url 'hot_products' %}"
-                >HOT DEALS</a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      {% load_category_list %}
       <!-- MOBILE SEARCH BAR (BELOW HEADER) -->
       <div class="container-fluid d-lg-none bg-white py-2 border-bottom">
         <form action="{% url 'products' %}" method="GET" class="d-flex">
@@ -169,72 +112,6 @@
     </header>
 
     <!-- MOBILE NAVIGATION (OFFCANVAS) -->
-    <div
-      class="offcanvas offcanvas-start lush-offcanvas"
-      tabindex="-1"
-      id="lushOffcanvas"
-    >
-      <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-black">PANJ SHANBE</h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body p-0">
-        <ul class="list-unstyled mobile-nav-list">
-          <li>
-            <a href="{% url 'hot_products' %}" class="mobile-nav-link hot-link"
-              >HOT DEALS 🔥</a
-            >
-          </li>
-          <li><a href="{% url 'home' %}" class="mobile-nav-link">HOME</a></li>
-          <li>
-            <a href="{% url 'products' %}" class="mobile-nav-link">NEW IN</a>
-          </li>
-          <li>
-            <a
-              href="{% url 'category_detail' 'laptops' %}"
-              class="mobile-nav-link"
-              >LAPTOPS</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'category_detail' 'phones' %}"
-              class="mobile-nav-link"
-              >PHONES</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'category_detail' 'afghani-clothes' %}"
-              class="mobile-nav-link"
-              >AFGHANI CLOTHES</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'category_detail' 'home-kitchen' %}"
-              class="mobile-nav-link"
-              >HOME & KITCHEN</a
-            >
-          </li>
-          <li class="border-top mt-3 pt-3">
-            <a href="{% url 'about' %}" class="mobile-nav-link small"
-              >OUR STORY</a
-            >
-          </li>
-          <li>
-            <a href="{% url 'contact' %}" class="mobile-nav-link small"
-              >HELP & CONTACT</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
 
     <main class="lush-main">{% block content %}{% endblock %}</main>
 

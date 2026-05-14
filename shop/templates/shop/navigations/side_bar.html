@@ -1,0 +1,41 @@
+<!-- MAIN NAVIGATION BAR (DESKTOP) -->
+<nav class="lush-nav border-top border-bottom d-none d-lg-block">
+  <div class="container-fluid px-5">
+    <ul class="nav justify-content-center py-2">
+      {% if request.path != '/' %}
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/' %}active{% endif %}"
+          href="{% url 'home' %}"
+          >HOME</a
+        >
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/products/' %}active{% endif %}"
+          href="{% url 'products' %}"
+          >NEW IN</a
+        >
+      </li>
+
+      {% for category in categories %}
+      <li class="nav-item">
+        <a
+          class="nav-link {% if category.slug in request.path %}active{% endif %}"
+          href="{% url 'category_detail' category.name|slugify %}"
+          >{{ category.name|upper }}</a
+        >
+      </li>
+      {% endfor %}
+
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/hot/' %}active{% endif %}"
+          href="{% url 'hot_products' %}"
+          >HOT DEALS</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
