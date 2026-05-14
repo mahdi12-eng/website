@@ -56,6 +56,13 @@ def turn_admin(request):
 
 
 def index(request):
+    # products = get_products()
+    # Filter out any "bowl" category if mistakenly added
+    clean_categories = [
+        c
+        for c in CATEGORIES
+        if "bowl" not in c["name"].lower() and "bowl" not in c["slug"].lower()
+    ]
     featured_products = [p for p in PRODUCTS if p.get("hot")]
     return render(
         request,
@@ -90,6 +97,15 @@ def category_detail(request, category_slug):
 
     # all_products = get_products()
     category_products = [p for p in PRODUCTS if p["category"] == category_slug]
+
+    # FIX: Remove any "bowl" products mistakenly added to phones
+    if category_slug == "phones":
+        category_products = [
+            p
+            for p in category_products
+            if "bowl" not in p["name"].lower() and "bowl" not in str(p["image"]).lower()
+        ]
+
     return render(
         request,
         "shop/category_detail.html",

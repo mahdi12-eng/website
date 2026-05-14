@@ -385,6 +385,7 @@ a {
     visibility: hidden;
     pointer-events: none;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smoother curve */
+    transition-delay: 0s; /* Disappear immediately on mouse-out */
     box-shadow: 0 40px 80px rgba(0,0,0,0.8);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
@@ -401,11 +402,13 @@ a {
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0) scale(1.05); /* Scales up slightly beyond 100% */
+    transition-delay: 2s; /* Wait 2 seconds before showing flyout */
 }
 
 .lush-product-card:hover .lush-card-base {
     opacity: 0.3;
     transform: scale(0.98);
+    transition-delay: 2s; /* Wait 2 seconds before fading base card */
 }
 
 .flyout-banner {
