@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password
 from django.utils.text import slugify
 
 
@@ -42,18 +43,6 @@ if len(CATEGORIES) == 0:
         )
 
 
-def price_fixe(p):
-    return int(p.strip("$").replace(",", ""))
-
-
-# Helper to get products with slugs
-# def get_products():
-
-
-#     for i, item in enumerate(PRODUCTS):
-#         item["id"] = i
-#         item["slug"] = slugify(item["name"])
-#     return PRODUCTS
 def exite_admin(req):
     global ADMIN_CONTROLL
     ADMIN_CONTROLL = False
@@ -67,7 +56,6 @@ def turn_admin(request):
 
 
 def index(request):
-    # products = get_products()
     featured_products = [p for p in PRODUCTS if p.get("hot")]
     return render(
         request,
@@ -82,15 +70,9 @@ def index(request):
 
 def products(request):
     query = request.GET.get("q")
-    # all_products = get_products()
 
     if query:
-        filtered_products = [
-            p
-            for p in PRODUCTS
-            if query.lower() in p["name"].lower()
-            or query.lower() in p["description"].lower()
-        ]
+        filtered_products = Products.objects.filter(name=query.lower())
         context = {
             "products": filtered_products,
             "query": query,
@@ -139,16 +121,21 @@ def delete_from_hots(req, id):
 
 def product_detail(request, product_slug):
     # all_products = get_products()
+
+    ##################### plz explain this why you do this #################
     product = next((p for p in PRODUCTS if p["slug"] == product_slug), None)
     if not product:
         return render(request, "shop/not_found.html")
 
     # Get related products (same category)
-    related = [
-        p
-        for p in PRODUCTS
-        if p["category"] == product["category"] and p["slug"] != product_slug
-    ][:4]
+    related = Products.objects.filter(
+        category=product["category"], name=product_slug.replace("-", " ")
+    )
+    # related = [
+    #     p
+    #     for p in PRODUCTS
+    #     if p["category"] == product["category"] and p["slug"] != product_slug
+    # ][:4]
 
     return render(
         request, "shop/product_detail.html", {"product": product, "related": related}

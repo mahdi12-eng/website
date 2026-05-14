@@ -10,6 +10,9 @@ class Address(models.Model):
         managed = False
         db_table = "address"
 
+    def __str__(self) -> str:
+        return f"{self.city}-{self.state}"
+
 
 class Categories(models.Model):
     ct_id = models.AutoField(primary_key=True, blank=True)
@@ -19,6 +22,9 @@ class Categories(models.Model):
     class Meta:
         managed = False
         db_table = "categories"
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
 class Customers(models.Model):
@@ -35,6 +41,9 @@ class Customers(models.Model):
     class Meta:
         managed = False
         db_table = "customers"
+
+    def __str__(self) -> str:
+        return f"{self.cs_name} {self.cs_lastname}-{self.email}-{self.points}"
 
 
 class Feedbacks(models.Model):
@@ -58,6 +67,9 @@ class Invoices(models.Model):
         managed = False
         db_table = "invoices"
 
+    def __str__(self) -> str:
+        return f"{self.invoic_total}/{self.payment_total}"
+
 
 class OrderDetail(models.Model):
     od_id = models.AutoField(primary_key=True, blank=True)
@@ -71,6 +83,9 @@ class OrderDetail(models.Model):
     class Meta:
         managed = False
         db_table = "order_detail"
+
+    def __str__(self) -> str:
+        return f"{self.product}-{self.unit_price}"
 
 
 class Orders(models.Model):
@@ -105,6 +120,9 @@ class Payments(models.Model):
         managed = False
         db_table = "payments"
 
+    def __str__(self) -> str:
+        return f"{self.amount}-{self.method}"
+
 
 class Products(models.Model):
     pr_id = models.AutoField(primary_key=True)
@@ -112,9 +130,10 @@ class Products(models.Model):
     category = models.ForeignKey(Categories, models.DO_NOTHING, db_column="category")
     price = models.IntegerField()
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="static/shop/images/products")
+    image = models.TextField(null=True)
     amount_in_stock = models.IntegerField(blank=True, null=True)
     hot = models.BooleanField(blank=True, null=True)
+    saved_time = models.TimeField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
         return f"{self.pr_id}-{self.name}-{self.price}"
