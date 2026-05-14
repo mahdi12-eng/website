@@ -33,6 +33,6 @@ def load_category_list():
 
 
 @register.inclusion_tag("shop/navigations/mobile.html")
-def load_category_list():
+def load_category_list_mobile():
     cat = Categories.objects.all()
     return {"categories": cat}
