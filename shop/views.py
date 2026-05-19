@@ -1,9 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.utils.text import slugify
-
-
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
+from django.core.paginator import Paginator
+
+# TODO: optimize the way products and categories are loaded to avoid unnecessary in-memory data duplication and ensure data consistency with the database
+
+# TODO: Refactor to use Django's ORM more effectively and avoid in-memory data duplication
+# TODO: Implement proper error handling and user feedback for actions like adding/removing hot products
+# TODO: Consider using Django's class-based views for better organization and maintainability
+# TODO: Add pagination for product listings and search results to improve performance with large datasets
+# TODO: Implement user authentication and permissions to control access to admin features like managing hot products
+# TODO: Optimize database queries to reduce load and improve response times, especially for product and category retrieval
+# TODO: Add unit tests to ensure the correctness of views and template tags, especially for edge cases like missing products or categories
+
 
 ADMIN_CONTROLL = False
 
@@ -63,7 +73,7 @@ def index(request):
         for c in CATEGORIES
         if "bowl" not in c["name"].lower() and "bowl" not in c["slug"].lower()
     ]
-    featured_products = [p for p in PRODUCTS if p.get("hot")]
+    featured_products = Products.objects.filter(hot=1)
     return render(
         request,
         "shop/index.html",
@@ -76,9 +86,7 @@ def index(request):
 
 
 def products(request):
-    query = request.GET.get("q")
-
-    if query:
+    if query := request.GET.get("q"):
         filtered_products = Products.objects.filter(name=query.lower())
         context = {
             "products": filtered_products,
@@ -90,20 +98,21 @@ def products(request):
     return render(request, "shop/products.html", context)
 
 
-def category_detail(request, category_slug):
-    category = next((c for c in CATEGORIES if c["slug"] == category_slug), None)
+def category_detail(request, category_name):
+    category = Categories.objects.filter(name=category_name.title())
     if not category:
         return render(request, "shop/not_found.html")
 
     # all_products = get_products()
-    category_products = [p for p in PRODUCTS if p["category"] == category_slug]
+    category_products = Products.objects.filter(
+        category__name=category_name.title())
 
     # FIX: Remove any "bowl" products mistakenly added to phones
-    if category_slug == "phones":
+    if category_name == "phones":
         category_products = [
             p
             for p in category_products
-            if "bowl" not in p["name"].lower() and "bowl" not in str(p["image"]).lower()
+            if "bowl" not in p.name.lower() and "bowl" not in str(p.image).lower()
         ]
 
     return render(
@@ -118,8 +127,16 @@ def category_detail(request, category_slug):
 
 def hot_products(request):
     HOT_PRODUCTS = Products.objects.filter(hot=1)  # filtering the hots
+    pagi = Paginator(HOT_PRODUCTS, 12)  # setting the page size
+    page_no = request.GET.get("p", 2)  # setting the page
+
+    try:
+        page_obj = pagi.page(page_no)
+    except:
+        page_obj = pagi.page(pagi.num_pages)
     return render(
-        request, "shop/hot.html", {"products": HOT_PRODUCTS, "controll": ADMIN_CONTROLL}
+        request, "shop/hot.html", {"products":  page_obj,
+                                   "controll": ADMIN_CONTROLL}
     )
 
 
@@ -135,26 +152,28 @@ def delete_from_hots(req, id):
     return redirect("hot_products")
 
 
-def product_detail(request, product_slug):
+def product_detail(request, product_name):
     # all_products = get_products()
 
     ##################### plz explain this why you do this #################
-    product = next((p for p in PRODUCTS if p["slug"] == product_slug), None)
+    product = Products.objects.filter(name=product_name)
     if not product:
         return render(request, "shop/not_found.html")
 
     # Get related products (same category)
     related = Products.objects.filter(
-        category=product["category"], name=product_slug.replace("-", " ")
-    )
+        category__name=product["category"].title())
     # related = [
     #     p
     #     for p in PRODUCTS
     #     if p["category"] == product["category"] and p["slug"] != product_slug
     # ][:4]
-
+    # related = [
+    #     p
+    print(related)
     return render(
-        request, "shop/product_detail.html", {"product": product, "related": related}
+        request, "shop/product_detail.html", {
+            "product": product, "related": related}
     )
 
 

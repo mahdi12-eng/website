@@ -16,7 +16,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center"
             >
               <a
-                href="{% url 'product_detail'  product.name|slugify %}"
+                href="{% url 'product_detail' product.name %}"
                 class="mb-3 d-block"
               >
                 <img
@@ -46,7 +46,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               </a>
               {% else %}
               <a
-                href="{% url 'product_detail' product.name|slugify %}"
+                href="{% url 'product_detail' product.name %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >
@@ -61,6 +61,24 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
       </div>
       {% endfor %}
     </div>
+    <!-- Previous Page Button -->
+    <a
+      href="{% url 'my_view' page=products.previous_page_number if products.has_previous else '#' %}"
+      class="pagination-button previous"
+    >
+      Previous
+    </a>
+
+    <!-- Page Number -->
+    Page {{ products.number }} of {{ products.paginator.num_pages }}
+
+    <!-- Next Page Button -->
+    <a
+      href="{% url 'my_view' page=products.next_page_number if products.has_next else '#' %}"
+      class="pagination-button next"
+    >
+      Next
+    </a>
   </div>
 </section>
 {% endblock %}

@@ -8,7 +8,7 @@ urlpatterns = [
         "categories/", views.index, name="categories"
     ),  # Categories redirects to home/index as we have categories on home
     path(
-        "categories/<slug:category_slug>/",
+        "categories/<str:category_name>/",
         views.category_detail,
         name="category_detail",
     ),
@@ -19,7 +19,7 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     path("hot/", views.hot_products, name="hot_products"),
     path("hot/unhot/<id>", views.delete_from_hots, name="unhot"),
-    path("product/<slug:product_slug>/", views.product_detail, name="product_detail"),
+    path("product/<str:product_name>/", views.product_detail, name="product_detail"),
     path("admin-controll/", views.turn_admin, name="turn_admin"),
     path("admin-exite/", views.exite_admin, name="exite_admin"),
 ]
