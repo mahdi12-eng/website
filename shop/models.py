@@ -3,8 +3,8 @@ from django.db import models
 
 class Address(models.Model):
     adr_id = models.AutoField(primary_key=True, blank=True)
-    city = models.TextField()
-    state = models.TextField()
+    city = models.CharField()
+    state = models.CharField()
 
     class Meta:
         managed = False
@@ -16,7 +16,7 @@ class Address(models.Model):
 
 class Categories(models.Model):
     ct_id = models.AutoField(primary_key=True, blank=True)
-    name = models.TextField()
+    name = models.CharField()
     description = models.TextField(blank=True)
 
     class Meta:
@@ -29,14 +29,16 @@ class Categories(models.Model):
 
 class Customers(models.Model):
     cs_id = models.AutoField(primary_key=True, blank=True)
-    cs_name = models.TextField()
-    cs_lastname = models.TextField()
-    birth_date = models.DateField(auto_now=False, auto_now_add=False)
+    cs_name = models.CharField(max_length=50)
+    cs_lastname = models.CharField()
     email = models.EmailField(max_length=254)
-    phone = models.TextField(blank=True, null=True)
-    address = models.ForeignKey(Address, models.DO_NOTHING, db_column="address")
+    birth_date = models.DateField(auto_now=False, auto_now_add=False)
+    phone = models.CharField(blank=True, null=True)
+    address = models.ForeignKey(
+        Address, models.DO_NOTHING, db_column="address")
     create_time = models.DateTimeField(auto_now=False, auto_now_add=True)
     points = models.IntegerField(blank=True, null=True)
+    password = models.CharField(max_length=255)
 
     class Meta:
         managed = False
@@ -48,7 +50,8 @@ class Customers(models.Model):
 
 class Feedbacks(models.Model):
     fb_id = models.AutoField(primary_key=True, blank=True)
-    customer = models.ForeignKey(Customers, models.DO_NOTHING, db_column="customer")
+    customer = models.ForeignKey(
+        Customers, models.DO_NOTHING, db_column="customer")
     fb_date = models.DateField(auto_now=False, auto_now_add=True)
     feedback = models.TextField()
 
@@ -76,7 +79,8 @@ class OrderDetail(models.Model):
     or_field = models.ForeignKey(
         "Orders", models.DO_NOTHING, db_column="or_id"
     )  # Field renamed because it was a Python reserved word.
-    product = models.ForeignKey("Products", models.DO_NOTHING, db_column="product")
+    product = models.ForeignKey(
+        "Products", models.DO_NOTHING, db_column="product")
     unit_price = models.IntegerField()
     quantity = models.IntegerField()
 
@@ -90,7 +94,8 @@ class OrderDetail(models.Model):
 
 class Orders(models.Model):
     or_id = models.AutoField(primary_key=True, blank=True)
-    customer = models.ForeignKey(Customers, models.DO_NOTHING, db_column="customer")
+    customer = models.ForeignKey(
+        Customers, models.DO_NOTHING, db_column="customer")
     or_data = models.DateTimeField(auto_now=False, auto_now_add=True)
     status = models.ForeignKey("Status", models.DO_NOTHING, db_column="status")
 
@@ -101,7 +106,7 @@ class Orders(models.Model):
 
 class PaymentMethod(models.Model):
     pym_id = models.AutoField(primary_key=True, blank=True)
-    method = models.TextField()
+    method = models.CharField()
 
     class Meta:
         managed = False
@@ -114,7 +119,8 @@ class Payments(models.Model):
     customers_cs = models.ForeignKey(Customers, models.DO_NOTHING)
     py_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     amount = models.IntegerField()
-    method = models.ForeignKey(PaymentMethod, models.DO_NOTHING, db_column="method")
+    method = models.ForeignKey(
+        PaymentMethod, models.DO_NOTHING, db_column="method")
 
     class Meta:
         managed = False
@@ -126,11 +132,12 @@ class Payments(models.Model):
 
 class Products(models.Model):
     pr_id = models.AutoField(primary_key=True)
-    name = models.TextField()
-    category = models.ForeignKey(Categories, models.DO_NOTHING, db_column="category")
+    name = models.CharField()
+    category = models.ForeignKey(
+        Categories, models.DO_NOTHING, db_column="category")
     price = models.IntegerField()
     description = models.TextField(blank=True, null=True)
-    image = models.TextField(null=True)
+    image = models.CharField(null=True)
     amount_in_stock = models.IntegerField(blank=True, null=True)
     hot = models.BooleanField(blank=True, null=True)
     saved_time = models.TimeField(auto_now=False, auto_now_add=True)
@@ -145,7 +152,7 @@ class Products(models.Model):
 
 class Status(models.Model):
     st_id = models.AutoField(primary_key=True, blank=True)
-    state = models.TextField()
+    state = models.CharField()
 
     class Meta:
         managed = False

@@ -18,9 +18,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
         <p class="lead text-white mb-4">
           Handcrafted Afghani Gand, made with love and cultural heritage.
         </p>
-        <a
-          href="{% url 'category_detail' 'afghani clothes' %}"
-          class="lush-btn-white"
+        <a href="{% url 'category_detail' '3' %}" class="lush-btn-white"
           >DISCOVER MORE</a
         >
       </div>
@@ -36,7 +34,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
         <p class="lead text-white mb-4">
           The new iPhone 17 Pro Max. Experience the future of mobile technology.
         </p>
-        <a href="{% url 'category_detail' 'phones' %}" class="lush-btn-white"
+        <a href="{% url 'category_detail' '2' %}" class="lush-btn-white"
           >SHOP PHONES</a
         >
       </div>
@@ -52,9 +50,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
         <p class="lead text-white mb-4">
           Authentic Istalif ceramic pottery. Bringing Afghan art to your table.
         </p>
-        <a
-          href="{% url 'category_detail' 'home and kitchen' %}"
-          class="lush-btn-white"
+        <a href="{% url 'category_detail' '4' %}" class="lush-btn-white"
           >EXPLORE KITCHEN</a
         >
       </div>
@@ -86,11 +82,15 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
     <h2 class="lush-title">SHOP BY<br />CATEGORY</h2>
   </div>
   <div class="row g-3 g-md-4 px-lg-5">
+    <!--  Lopping trow the categories----------------- -->
     {% for cat in categories %}
     <div class="col-6 col-md-6 col-lg-3">
       <div class="lush-product-card">
         <!-- BASE CARD -->
-        <a href="{% url 'category_detail' cat %}" class="text-decoration-none">
+        <a
+          href="{% url 'category_detail' cat.ct_id %}"
+          class="text-decoration-none"
+        >
           <div
             class="lush-card-base p-3 p-md-4 text-center d-flex flex-column justify-content-center"
             style="min-height: 120px"
@@ -110,7 +110,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
             <h3 class="flyout-title">{{ cat.name|upper }}</h3>
             <p class="flyout-description">{{ cat.description }}</p>
             <a
-              href="{% url 'category_detail' cat %}"
+              href="{% url 'category_detail' cat.ct_id %}"
               class="flyout-btn text-decoration-none d-inline-block"
               >EXPLORE CATEGORY</a
             >
@@ -118,6 +118,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
         </div>
       </div>
     </div>
+    <!-- End for category loop-->
     {% endfor %}
   </div>
 </section>
@@ -129,13 +130,14 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
     <a href="/hot/" class="lush-link mb-2">VIEW ALL 🔥</a>
   </div>
   <div class="row g-3 g-md-4 px-lg-5">
+    <!--looping trow the products  -->
     {% for item in featured_products|slice:":8" %}
     <div class="col-6 col-md-6 col-lg-3">
       <div class="lush-product-card">
         <!-- BASE CARD (Visible by default) -->
         <div class="lush-card-base">
           <div class="lush-img-container">
-            <a href="{% url 'product_detail' item.name%}">
+            <a href="{% url 'product_detail' item.pr_id%}">
               <img
                 src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
@@ -152,7 +154,7 @@ Bazaar - Fresh & Cultural{% endblock %} {% block content %}
             </p>
             <h3 class="product-name" style="font-size: 1rem">
               <a
-                href="{% url 'product_detail' item.name %}"
+                href="{% url 'product_detail' item.pr_id %}"
                 class="text-black text-decoration-none"
                 >{{ item.name }}</a
               >

@@ -3,7 +3,8 @@ from django.contrib.auth.hashers import make_password
 from django.utils.text import slugify
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
 from django.core.paginator import Paginator
-
+from .forms import LoginForm, RegisterForm, CustomersForm
+from django.contrib import messages
 # TODO: optimize the way products and categories are loaded to avoid unnecessary in-memory data duplication and ensure data consistency with the database
 
 # TODO: Refactor to use Django's ORM more effectively and avoid in-memory data duplication
@@ -18,39 +19,7 @@ from django.core.paginator import Paginator
 ADMIN_CONTROLL = False
 
 
-def get_products_from_db():
-    products_list = []
-
-    for product in Products.objects.all():
-        products_list.append(
-            {
-                "id": product.pr_id,
-                "name": product.name,
-                "slug": slugify(product.name),
-                "category": slugify(product.category.name),
-                "price": f"${product.price:,}",
-                "description": product.description,
-                "image": product.image,
-                "hot": True if product.hot == 1 else False,
-            }
-        )
-    return products_list
-
-
 #  finished populating PRODUCTS list from the database
-
-CATEGORIES = []
-PRODUCTS = get_products_from_db()
-
-if len(CATEGORIES) == 0:
-    for category in Categories.objects.all():
-        CATEGORIES.append(
-            {
-                "name": category.name,
-                "slug": slugify(category.name),
-                "description": category.description,
-            }
-        )
 
 
 def exite_admin(req):
@@ -66,19 +35,13 @@ def turn_admin(request):
 
 
 def index(request):
-    # products = get_products()
-    # Filter out any "bowl" category if mistakenly added
-    clean_categories = [
-        c
-        for c in CATEGORIES
-        if "bowl" not in c["name"].lower() and "bowl" not in c["slug"].lower()
-    ]
     featured_products = Products.objects.filter(hot=1)
+    categories = Categories.objects.all()
     return render(
         request,
         "shop/index.html",
         {
-            "categories": CATEGORIES,
+            "categories": categories,
             "featured_products": featured_products,
             "controll": ADMIN_CONTROLL,
         },
@@ -94,27 +57,17 @@ def products(request):
             "title": f"SEARCH RESULTS FOR '{query}'",
         }
     else:
-        context = {"products": PRODUCTS, "title": "NEW IN & BESTSELLERS"}
+        all_products = Products.objects.all()
+        context = {"products": all_products, "title": "NEW IN & BESTSELLERS"}
     return render(request, "shop/products.html", context)
 
 
-def category_detail(request, category_name):
-    category = Categories.objects.filter(name=category_name.title())
+def category_detail(request, id):
+    # all_products = get_products()
+    category = Categories.objects.get(ct_id=id)
     if not category:
         return render(request, "shop/not_found.html")
-
-    # all_products = get_products()
-    category_products = Products.objects.filter(
-        category__name=category_name.title())
-
-    # FIX: Remove any "bowl" products mistakenly added to phones
-    if category_name == "phones":
-        category_products = [
-            p
-            for p in category_products
-            if "bowl" not in p.name.lower() and "bowl" not in str(p.image).lower()
-        ]
-
+    category_products = Products.objects.filter(category=id)
     return render(
         request,
         "shop/category_detail.html",
@@ -127,13 +80,12 @@ def category_detail(request, category_name):
 
 def hot_products(request):
     HOT_PRODUCTS = Products.objects.filter(hot=1)  # filtering the hots
-    pagi = Paginator(HOT_PRODUCTS, 12)  # setting the page size
-    page_no = request.GET.get("p", 2)  # setting the page
-
+    paginator = Paginator(HOT_PRODUCTS, 12)  # setting the page size
+    page_no = request.GET.get("p", 1)  # setting the page
     try:
-        page_obj = pagi.page(page_no)
+        page_obj = paginator.get_page(page_no)
     except:
-        page_obj = pagi.page(pagi.num_pages)
+        page_obj = paginator.get_page(1)
     return render(
         request, "shop/hot.html", {"products":  page_obj,
                                    "controll": ADMIN_CONTROLL}
@@ -141,36 +93,27 @@ def hot_products(request):
 
 
 def delete_from_hots(req, id):
-    global PRODUCTS
-    target = Products.objects.get(pr_id=id)
-    target.hot = 0
-    target.save()
-    for product in PRODUCTS:
-        if product["hot"] == True and product["id"] == id:
-            product["hot"] = False
+    pass
 
-    return redirect("hot_products")
+    # target = Products.objects.get(pr_id=id)
+    # target.hot = 0
+    # target.save()
+    # for product in PRODUCTS:
+    #     if product["hot"] == True and product["id"] == id:
+    #         product["hot"] = False
+
+    # return redirect("hot_products")
 
 
-def product_detail(request, product_name):
-    # all_products = get_products()
-
-    ##################### plz explain this why you do this #################
-    product = Products.objects.filter(name=product_name)
+def product_detail(request, id):
+    product = Products.objects.get(pr_id=id)
     if not product:
         return render(request, "shop/not_found.html")
 
     # Get related products (same category)
     related = Products.objects.filter(
-        category__name=product["category"].title())
-    # related = [
-    #     p
-    #     for p in PRODUCTS
-    #     if p["category"] == product["category"] and p["slug"] != product_slug
-    # ][:4]
-    # related = [
-    #     p
-    print(related)
+        category=product.category)
+
     return render(
         request, "shop/product_detail.html", {
             "product": product, "related": related}
@@ -186,8 +129,22 @@ def contact(request):
 
 
 def login_view(request):
+    if request.method == "POSt":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(url(index))
+    form = LoginForm()
     return render(request, "shop/login.html")
 
 
 def register_view(request):
-    return render(request, "shop/register.html")
+    if request.method == "POST":
+        form = CustomersForm(request.POST)
+        print("post request")
+        if form.is_valid():
+            print("form is valid ")
+            form.save()
+            return redirect(url(index))
+    form = CustomersForm(request.POST)
+    return render(request, "shop/register.html", {"form": form})

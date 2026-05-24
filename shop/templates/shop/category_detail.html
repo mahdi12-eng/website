@@ -1,5 +1,9 @@
-{% extends "shop/base.html" %}{% load static %} {% block title %}{{
-category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
+{% extends "shop/base.html" %} {% load humanize %}
+<!--  HI this is for issus-->
+{% load static %} {% block title %} {{category.name }} - PanjShanbe Bazaar
+<!--  HI this is for issus-->
+{%endblock %}<!--  HI this is for issus-->
+{% block content%}
 <!-- CATEGORY SLIDESHOW -->
 <div
   id="categoryCarousel"
@@ -36,7 +40,7 @@ category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
         <!-- BASE CARD -->
         <div class="lush-card-base">
           <div class="lush-img-container">
-            <a href="{% url 'product_detail' item.name %}">
+            <a href="{% url 'product_detail' item.pr_id %}">
               <img
                 src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
@@ -53,13 +57,13 @@ category.name }} - PanjShanbe Bazaar{% endblock %} {% block content %}
             </p>
             <h3 class="product-name" style="font-size: 1rem">
               <a
-                href="{% url 'product_detail' item.name %}"
+                href="{% url 'product_detail' item.pr_id %}"
                 class="text-black text-decoration-none"
                 >{{ item.name }}</a
               >
             </h3>
             <p class="product-price mb-0" style="font-size: 0.9rem">
-              {{ item.price }}
+              ${{ item.price|intcomma }}
             </p>
           </div>
         </div>

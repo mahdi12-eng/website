@@ -22,8 +22,8 @@
       {% for category in categories %}
       <li class="nav-item">
         <a
-          class="nav-link {% if category.slug in request.path %}active{% endif %}"
-          href="{% url 'category_detail' category.name|slugify %}"
+          class="nav-link {% if category.name in request.path %}active{% endif %}"
+          href="{% url 'category_detail' category.ct_id %}"
           >{{ category.name|upper }}</a
         >
       </li>

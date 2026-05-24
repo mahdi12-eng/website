@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",  # ✅ REQUIRED
     "django.contrib.messages",  # ✅ REQUIRED
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    "django_extensions",
     # MY APPS
     "shop",
 ]

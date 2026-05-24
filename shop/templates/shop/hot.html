@@ -16,7 +16,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center"
             >
               <a
-                href="{% url 'product_detail' product.name %}"
+                href="{% url 'product_detail' product.pr_id %}"
                 class="mb-3 d-block"
               >
                 <img
@@ -46,7 +46,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               </a>
               {% else %}
               <a
-                href="{% url 'product_detail' product.name %}"
+                href="{% url 'product_detail' product.pr_id %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >
@@ -62,23 +62,29 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
       {% endfor %}
     </div>
     <!-- Previous Page Button -->
+
+    {% if products.has_previous %}
     <a
-      href="{% url 'my_view' page=products.previous_page_number if products.has_previous else '#' %}"
-      class="pagination-button previous"
+      href="?p={{ products.previous_page_number }}"
+      class="lush-btn-white py-3"
     >
       Previous
     </a>
 
+    {% endif %}
+
     <!-- Page Number -->
-    Page {{ products.number }} of {{ products.paginator.num_pages }}
+    <b style="margin: auto 5% auto 5%">
+      Page {{ products.number }} of {{ products.paginator.num_pages }}
+    </b>
 
     <!-- Next Page Button -->
-    <a
-      href="{% url 'my_view' page=products.next_page_number if products.has_next else '#' %}"
-      class="pagination-button next"
-    >
+    {% if products.has_next %}
+    <a href="?p={{ products.next_page_number }}" class="lush-btn-white py-3">
       Next
     </a>
+
+    {% endif %}
   </div>
 </section>
 {% endblock %}

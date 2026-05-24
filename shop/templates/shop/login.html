@@ -17,7 +17,7 @@ Shanbe Bazaar{% endblock %} {% block content %}
     <div class="col-md-6">
       <div class="p-4 p-lg-5 border border-dark">
         <h2 class="fw-black mb-5 text-uppercase">SIGN IN</h2>
-        <form>
+        <form action="{{url 'login'}}" method="post">
           {% csrf_token %}
           <div class="mb-4">
             <label for="username" class="small text-uppercase fw-bold mb-2"
