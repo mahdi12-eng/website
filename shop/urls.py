@@ -1,6 +1,7 @@
 from django.urls import path
-
 from . import views
+
+app_name = "shop"
 
 urlpatterns = [
     # ------------------ Products section -----------------#
@@ -24,4 +25,5 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     path("admin-controll/", views.turn_admin, name="turn_admin"),
     path("admin-exite/", views.exite_admin, name="exite_admin"),
+
 ]

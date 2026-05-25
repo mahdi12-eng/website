@@ -14,6 +14,7 @@ SECRET_KEY = "django-insecure-lkad=lg^y96_nwk^3nef(po%%^7du*ar6b1b-*g84&i01e)+xw
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+SITE_ID = 2
 
 
 # Application definition
@@ -26,10 +27,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",  # ✅ REQUIRED
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     "django_extensions",
     # MY APPS
     "shop",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
