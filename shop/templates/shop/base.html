@@ -17,13 +17,13 @@
 
           <!-- LEFT LINKS (DESKTOP) -->
           <div class="col-lg-4 d-none d-lg-block">
-            <a href="/about/" class="lush-link me-4">OUR STORY</a>
-            <a href="/contact/" class="lush-link">HELP</a>
+            <a href="{% url 'shop:about' %}" class="lush-link me-4">OUR STORY</a>
+            <a href="{% url 'shop:contact' %}" class="lush-link">HELP</a>
           </div>
 
           <!-- CENTER LOGO -->
           <div class="col-8 col-lg-4 text-center">
-            <a class="lush-logo" href="{% url 'home' %}">PANJ SHANBE Bazaar</a>
+            <a class="lush-logo" href="{% url 'shop:home' %}">PANJ SHANBE Bazaar</a>
           </div>
 
           <!-- RIGHT ICONS -->
@@ -32,7 +32,7 @@
           >
             <div class="header-search d-none d-lg-block me-4">
               <form
-                action="{% url 'products' %}"
+                action="{% url 'shop:products' %}"
                 method="GET"
                 class="d-flex border-bottom border-dark"
               >
@@ -48,14 +48,14 @@
               </form>
             </div>
             <a
-              href="{% url 'hot_products' %}"
+              href="{% url 'shop:hot_products' %}"
               class="lush-link hot-link d-none d-lg-inline-block me-4"
               >HOT 🔥</a
             >
-            <a href="{% url 'login' %}" class="lush-icon-link me-3 me-lg-4"
+            <a href="{% url 'shop:login' %}" class="lush-icon-link me-3 me-lg-4"
               ><i class="far fa-user"></i
             ></a>
-            <a href="{% url 'home' %}" class="lush-icon-link"
+            <a href="{% url 'shop:home' %}" class="lush-icon-link"
               ><i class="fas fa-shopping-bag"></i
             ></a>
           </div>
@@ -66,7 +66,7 @@
       {% load_category_list %}
       <!-- MOBILE SEARCH BAR (BELOW HEADER) -->
       <div class="container-fluid d-lg-none bg-white py-2 border-bottom">
-        <form action="{% url 'products' %}" method="GET" class="d-flex">
+        <form action="{% url 'shop:products' %}" method="GET" class="d-flex">
           <input
             type="text"
             name="q"

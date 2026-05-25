@@ -6,7 +6,7 @@
       <li class="nav-item">
         <a
           class="nav-link {% if request.path == '/' %}active{% endif %}"
-          href="{% url 'home' %}"
+          href="{% url 'shop:home' %}"
           >HOME</a
         >
       </li>
@@ -14,7 +14,7 @@
       <li class="nav-item">
         <a
           class="nav-link {% if request.path == '/products/' %}active{% endif %}"
-          href="{% url 'products' %}"
+          href="{% url 'shop:products' %}"
           >NEW IN</a
         >
       </li>
@@ -23,7 +23,7 @@
       <li class="nav-item">
         <a
           class="nav-link {% if category.name in request.path %}active{% endif %}"
-          href="{% url 'category_detail' category.ct_id %}"
+          href="{% url 'shop:category_detail' category.ct_id %}"
           >{{ category.name|upper }}</a
         >
       </li>
@@ -32,7 +32,7 @@
       <li class="nav-item">
         <a
           class="nav-link {% if request.path == '/hot/' %}active{% endif %}"
-          href="{% url 'hot_products' %}"
+          href="{% url 'shop:hot_products' %}"
           >HOT DEALS</a
         >
       </li>

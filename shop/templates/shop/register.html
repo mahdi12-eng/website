@@ -18,7 +18,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
     <div class="col-md-7">
       <div class="p-4 p-lg-5 border border-dark">
         <h2 class="fw-black mb-5 text-uppercase">CREATE ACCOUNT</h2>
-        <form action="{%url 'register'%}" method="post">
+        <form action="{%url 'shop:register'%}" method="post">
           {% csrf_token %} {{form.as_p}}
           <button type="submit" class="lush-btn-black w-100 py-3">
             CREATE MY ACCOUNT
@@ -27,7 +27,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
         </form>
         <div class="mt-5 pt-4 border-top border-dark text-center">
           <p class="small text-uppercase fw-bold mb-3">Already a member?</p>
-          <a href="{% url 'login' %}" class="lush-btn-white d-block w-100 py-3"
+          <a href="{% url 'shop:login' %}" class="lush-btn-white d-block w-100 py-3"
             >SIGN IN HERE</a
           >
           <!--

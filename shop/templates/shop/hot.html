@@ -16,7 +16,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center"
             >
               <a
-                href="{% url 'product_detail' product.pr_id %}"
+                href="{% url 'shop:product_detail' product.pr_id %}"
                 class="mb-3 d-block"
               >
                 <img
@@ -40,13 +40,13 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               {% if controll %}
               <a
                 class="lush-btn-white py-3"
-                href="{% url 'unhot' product.id %}"
+                href="{% url 'shop:unhot' product.id %}"
               >
                 Delete
               </a>
               {% else %}
               <a
-                href="{% url 'product_detail' product.pr_id %}"
+                href="{% url 'shop:product_detail' product.pr_id %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >

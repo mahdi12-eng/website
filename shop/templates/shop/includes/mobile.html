@@ -15,18 +15,18 @@
   <div class="offcanvas-body p-0">
     <ul class="list-unstyled mobile-nav-list">
       <li>
-        <a href="{% url 'hot_products' %}" class="mobile-nav-link hot-link"
+        <a href="{% url 'shop:hot_products' %}" class="mobile-nav-link hot-link"
           >HOT DEALS 🔥</a
         >
       </li>
-      <li><a href="{% url 'home' %}" class="mobile-nav-link">HOME</a></li>
+      <li><a href="{% url 'shop:home' %}" class="mobile-nav-link">HOME</a></li>
       <li>
-        <a href="{% url 'products' %}" class="mobile-nav-link">NEW IN</a>
+        <a href="{% url 'shop:products' %}" class="mobile-nav-link">NEW IN</a>
       </li>
       {% for category in categories %}
       <li>
         <a
-          href="{% url 'category_detail' category.ct_id %}"
+          href="{% url 'shop:category_detail' category.ct_id %}"
           class="mobile-nav-link"
           >{{ category.name|upper }}</a
         >
@@ -34,10 +34,12 @@
       {% endfor %}
 
       <li class="border-top mt-3 pt-3">
-        <a href="{% url 'about' %}" class="mobile-nav-link small">OUR STORY</a>
+        <a href="{% url 'shop:about' %}" class="mobile-nav-link small"
+          >OUR STORY</a
+        >
       </li>
       <li>
-        <a href="{% url 'contact' %}" class="mobile-nav-link small"
+        <a href="{% url 'shop:contact' %}" class="mobile-nav-link small"
           >HELP & CONTACT</a
         >
       </li>

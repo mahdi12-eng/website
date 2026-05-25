@@ -65,7 +65,7 @@
     {% if item.pr_id != product.pr_id %}       
         <div class="lush-product-card">
             <div class="lush-img-container">
-              <a href="{% url 'product_detail' item.pr_id %}">
+              <a href="{% url 'shop:product_detail' item.pr_id %}">
                 <img src="{% static 'shop/images/products/'|add:item.image %}" alt="{{ item.name }}" class="img-fluid">
               </a>
               {% if item.hot %}
@@ -75,7 +75,7 @@
           </div>
         <div class="lush-product-info p-3">
             <p class="category-label">{{ item.category|upper }}</p>
-            <h3 class="product-name"><a href="{% url 'product_detail' item.pr_id %}" class="text-black text-decoration-none">{{ item.name }}</a></h3>
+            <h3 class="product-name"><a href="{% url 'shop:product_detail' item.pr_id %}" class="text-black text-decoration-none">{{ item.name }}</a></h3>
             <p class="product-price">{{ item.price }}</p>
             <button class="lush-btn-black w-100 py-2 mt-2">ADD TO BAG</button>
           </div>

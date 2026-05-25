@@ -40,7 +40,7 @@
         <!-- BASE CARD -->
         <div class="lush-card-base">
           <div class="lush-img-container">
-            <a href="{% url 'product_detail' item.pr_id %}">
+            <a href="{% url 'shop:product_detail' item.pr_id %}">
               <img
                 src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
@@ -57,7 +57,7 @@
             </p>
             <h3 class="product-name" style="font-size: 1rem">
               <a
-                href="{% url 'product_detail' item.pr_id %}"
+                href="{% url 'shop:product_detail' item.pr_id %}"
                 class="text-black text-decoration-none"
                 >{{ item.name }}</a
               >
@@ -96,7 +96,7 @@
     {% empty %}
     <div class="col-12 text-center py-5">
       <h3 class="text-muted">No products found in this category.</h3>
-      <a href="{% url 'products' %}" class="lush-btn-black mt-3"
+      <a href="{% url 'shop:products' %}" class="lush-btn-black mt-3"
         >SHOP ALL PRODUCTS</a
       >
     </div>
