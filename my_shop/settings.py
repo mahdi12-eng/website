@@ -30,9 +30,15 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django_extensions",
+    "debug_toolbar",
     # MY APPS
     "shop",
+    "acounts",
 ]
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_SQL': True,
+    'SHOW_STATICIP': True,
+}
 
 
 MIDDLEWARE = [
@@ -43,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # ✅ REQUIRED
     "django.contrib.messages.middleware.MessageMiddleware",  # ✅ REQUIRED
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
 
@@ -54,6 +61,7 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / "templates",
             BASE_DIR / "shop/templates",
+            BASE_DIR / "acounts/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -97,4 +105,6 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "shop/static",
+    BASE_DIR / "acounts/static",
 ]
+INTERNAL_IPS = ["127.0.0.1",]

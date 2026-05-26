@@ -1,5 +1,5 @@
-{% extends 'shop/base.html' %} {% load static %} {% block title %}Register -
-Panj Shanbe Bazaar{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}Register - Panj
+Shanbe Bazaar{% endblock %} {% block content %}
 <!-- REGISTER BANNER -->
 <section class="container-fluid py-5 px-5 bg-black text-white">
   <div class="row align-items-center">
@@ -27,7 +27,9 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
         </form>
         <div class="mt-5 pt-4 border-top border-dark text-center">
           <p class="small text-uppercase fw-bold mb-3">Already a member?</p>
-          <a href="{% url 'shop:login' %}" class="lush-btn-white d-block w-100 py-3"
+          <a
+            href="{% url 'shop:login' %}"
+            class="lush-btn-white d-block w-100 py-3"
             >SIGN IN HERE</a
           >
           <!--
