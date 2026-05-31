@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.utils.text import slugify
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegisterForm, CustomersForm
+# from .forms import LoginForm, RegisterForm, CustomersForm
 from django.contrib import messages
 # TODO: optimize the way products and categories are loaded to avoid unnecessary in-memory data duplication and ensure data consistency with the database
 
@@ -16,23 +17,7 @@ from django.contrib import messages
 # TODO: Add unit tests to ensure the correctness of views and template tags, especially for edge cases like missing products or categories
 
 
-ADMIN_CONTROLL = False
-
-
 #  finished populating PRODUCTS list from the database
-
-
-def exite_admin(req):
-    global ADMIN_CONTROLL
-    ADMIN_CONTROLL = False
-    return index(req)
-
-
-def turn_admin(request):
-    global ADMIN_CONTROLL
-    ADMIN_CONTROLL = True
-    return index(request)
-
 
 def index(request):
     featured_products = Products.objects.filter(hot=1)
@@ -43,9 +28,10 @@ def index(request):
         {
             "categories": categories,
             "featured_products": featured_products,
-            "controll": ADMIN_CONTROLL,
         },
     )
+
+# TODO :fix this
 
 
 def products(request):
@@ -63,7 +49,6 @@ def products(request):
 
 
 def category_detail(request, id):
-    # all_products = get_products()
     category = Categories.objects.get(ct_id=id)
     if not category:
         return render(request, "shop/not_found.html")
@@ -88,28 +73,22 @@ def hot_products(request):
         page_obj = paginator.get_page(1)
     return render(
         request, "shop/hot.html", {"products":  page_obj,
-                                   "controll": ADMIN_CONTROLL}
+                                   }
     )
 
 
 def delete_from_hots(req, id):
-    pass
+    target = Products.objects.get(pr_id=id)
+    target.hot = 0
+    target.save()
 
-    # target = Products.objects.get(pr_id=id)
-    # target.hot = 0
-    # target.save()
-    # for product in PRODUCTS:
-    #     if product["hot"] == True and product["id"] == id:
-    #         product["hot"] = False
-
-    # return redirect("hot_products")
+    return redirect(reverse("shop:hot_products"))
 
 
 def product_detail(request, id):
     product = Products.objects.get(pr_id=id)
     if not product:
         return render(request, "shop/not_found.html")
-
     # Get related products (same category)
     related = Products.objects.filter(
         category=product.category)

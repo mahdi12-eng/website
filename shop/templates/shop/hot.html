@@ -37,10 +37,10 @@ Shanbe Bazaar{% endblock %} {% block content %}
               <h3 class="fw-black mb-3">WHY IT'S HOT</h3>
               <p class="mb-4 small">{{ product.description }}</p>
 
-              {% if controll %}
+              {% if request.user.is_authenticated %}
               <a
                 class="lush-btn-white py-3"
-                href="{% url 'shop:unhot' product.id %}"
+                href="{% url 'shop:unhot' product.pr_id %}"
               >
                 Delete
               </a>

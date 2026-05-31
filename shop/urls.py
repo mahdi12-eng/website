@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = "shop"
 
 urlpatterns = [
@@ -16,14 +17,11 @@ urlpatterns = [
     ),
     path("products/", views.products, name="products"),
     path("hot/", views.hot_products, name="hot_products"),
-    path("hot/unhot/<id>", views.delete_from_hots, name="unhot"),
+    path("unhot/<int:id>", views.delete_from_hots, name="unhot"),
     path("product/<int:id>/", views.product_detail, name="product_detail"),
     # ---------------- customers section --------------------#
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
-    path("login/", views.login_view, name="login"),
-    path("register/", views.register_view, name="register"),
-    path("admin-controll/", views.turn_admin, name="turn_admin"),
-    path("admin-exite/", views.exite_admin, name="exite_admin"),
+
 
 ]

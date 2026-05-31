@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customers
+from django.forms.widgets import Select
 
 
 class RegisterForm(forms.Form):
@@ -26,11 +26,23 @@ class LoginForm(forms.Form):
         attrs={"class": "form-control rounded-0 border-dark py-3"}),)
 
 
-class CustomersForm(forms.ModelForm):
+class CustomersForm(forms.Form):
+    CITY = [
+        ('option1', 'Kabul'),
+    ]
+    STATE = [
+        ('option1', 'Chahar-dehi'),
+        ('option1', 'Kart-Chahar'),
+        ('option1', 'Pule-sorkh'),
+        ('option1', 'Darul-Aman'),
+    ]
+    name = forms.CharField(required=True)
+    last_name = forms.CharField(max_length=20, required=True)
+    birth_date = forms.DateField(required=True)
+    email = forms.EmailField(required=True)
 
-    class Meta:
-        model = Customers
-        fields = "__all__"
-
-        # ['cs_name', 'cs_lastname',
-        #           'email', 'birth_date', 'password',]
+    city = forms.ChoiceField(
+        choices=CITY, required=False, widget=Select)
+    state = forms.ChoiceField(
+        choices=STATE, required=True, widget=Select)
+    password = forms.CharField(required=True)

@@ -1,0 +1,2 @@
+plz fix this :
+    in the index page at the top header when I click on the explore more or oders it doesnot working

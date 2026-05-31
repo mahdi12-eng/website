@@ -31,9 +31,12 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "django_extensions",
     "debug_toolbar",
+    'allauth',
+    'allauth.account',
     # MY APPS
     "shop",
     "acounts",
+    "dashboard",
 ]
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_SQL': True,
@@ -45,13 +48,19 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",  # ✅ REQUIRED
     "django.middleware.common.CommonMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # ✅ REQUIRED
     "django.contrib.messages.middleware.MessageMiddleware",  # ✅ REQUIRED
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware"
+
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 ROOT_URLCONF = "my_shop.urls"
 
@@ -62,6 +71,7 @@ TEMPLATES = [
             BASE_DIR / "templates",
             BASE_DIR / "shop/templates",
             BASE_DIR / "acounts/templates",
+            BASE_DIR / "dashboard/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {

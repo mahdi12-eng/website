@@ -160,7 +160,7 @@
               >
             </h3>
             <p class="product-price mb-0" style="font-size: 0.9rem">
-              {{ item.price }}
+              ${{ item.price }}
             </p>
           </div>
         </div>
@@ -183,9 +183,10 @@
               performance and style. {% endif %}
             </p>
             <div class="flyout-footer">
-              <span class="fs-4 fw-bold">{{ item.price }}</span>
+              <span class="fs-4 fw-bold">${{ item.price }}</span>
 
-              {% if controll %}
+              <!---->
+              {% if request.user.is_authenticated%}
               <button class="flyout-btn">DELETE</button>
               <button class="flyout-btn">UPDATE</button>
               {% else %}
@@ -196,7 +197,7 @@
         </div>
       </div>
     </div>
-    {% endfor %} {% if controll %}
+    {% endfor %} {% if request.user.is_authenticated %}
     <button class="flyout-btn">Add Product</button>
     {% endif %}
   </div>
@@ -211,7 +212,7 @@
         The MacBook Pro M3 Max is now in stock. The ultimate machine for
         professional creators and developers.
       </p>
-      <a href="{% url 'shop:category_detail' '4' %}" class="lush-btn-white"
+      <a href="{% url 'shop:category_detail' '1' %}" class="lush-btn-white"
         >SHOP LAPTOPS</a
       >
     </div>
