@@ -1,0 +1,46 @@
+<div
+  class="offcanvas offcanvas-start lush-offcanvas"
+  tabindex="-1"
+  id="lushOffcanvas"
+>
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-black">PANJ SHANBE</h5>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <ul class="list-unstyled mobile-nav-list">
+      <li>
+        <a href="{% url 'hot_products' %}" class="mobile-nav-link hot-link"
+          >HOT DEALS 🔥</a
+        >
+      </li>
+      <li><a href="{% url 'home' %}" class="mobile-nav-link">HOME</a></li>
+      <li>
+        <a href="{% url 'products' %}" class="mobile-nav-link">NEW IN</a>
+      </li>
+      {% for category in categories %}
+      <li>
+        <a
+          href="{% url 'category_detail' category.name|slugify %}"
+          class="mobile-nav-link"
+          >{{ category.name|upper }}</a
+        >
+      </li>
+      {% endfor %}
+
+      <li class="border-top mt-3 pt-3">
+        <a href="{% url 'about' %}" class="mobile-nav-link small">OUR STORY</a>
+      </li>
+      <li>
+        <a href="{% url 'contact' %}" class="mobile-nav-link small"
+          >HELP & CONTACT</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
