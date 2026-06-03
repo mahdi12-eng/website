@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import *
 # from .. import models as md
 
 # admin.site.register(md.Address)
@@ -13,14 +12,3 @@ from .models import *
 # admin.site.register(md.Payments)
 # admin.site.register(md.Products)
 # admin.site.register(md.Status)
-admin.site.register(Address)
-admin.site.register(Categories)
-admin.site.register(Customers)
-admin.site.register(Feedbacks)
-admin.site.register(Invoices)
-admin.site.register(Orders)
-admin.site.register(OrderDetail)
-admin.site.register(PaymentMethod)
-admin.site.register(Payments)
-admin.site.register(Products)
-admin.site.register(Status)

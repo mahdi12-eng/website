@@ -6,3 +6,4 @@ class ShopConfig(AppConfig):
 
     def ready(self) -> None:  # registering the template tags
         from .templatetags.shop_tags import register
+        # from .. import models

@@ -1,5 +1,5 @@
-{% extends 'shop/base.html' %} {% load static %}{% block title %}HOT Products -
-Panj Shanbe Bazaar{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %}{% block title %}HOT Products - Panj
+Shanbe Bazaar{% endblock %} {% block content %}
 <section class="hot-page py-5">
   <div class="container">
     <h1 class="lush-title text-center mb-5">🔥 HOT BESTSELLERS 🔥</h1>
@@ -16,7 +16,7 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               class="hot-card-front bg-white border border-dark p-4 d-flex flex-column justify-content-center"
             >
               <a
-                href="{% url 'product_detail'  product.name|slugify %}"
+                href="{% url 'shop:product_detail' product.pr_id %}"
                 class="mb-3 d-block"
               >
                 <img
@@ -37,16 +37,16 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               <h3 class="fw-black mb-3">WHY IT'S HOT</h3>
               <p class="mb-4 small">{{ product.description }}</p>
 
-              {% if controll %}
+              {% if request.user.is_authenticated %}
               <a
                 class="lush-btn-white py-3"
-                href="{% url 'unhot' product.id %}"
+                href="{% url 'shop:unhot' product.pr_id %}"
               >
                 Delete
               </a>
               {% else %}
               <a
-                href="{% url 'product_detail' product.name|slugify %}"
+                href="{% url 'shop:product_detail' product.pr_id %}"
                 class="lush-btn-white py-3"
                 >VIEW PRODUCT</a
               >
@@ -61,6 +61,30 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
       </div>
       {% endfor %}
     </div>
+    <!-- Previous Page Button -->
+
+    {% if products.has_previous %}
+    <a
+      href="?p={{ products.previous_page_number }}"
+      class="lush-btn-white py-3"
+    >
+      Previous
+    </a>
+
+    {% endif %}
+
+    <!-- Page Number -->
+    <b style="margin: auto 5% auto 5%">
+      Page {{ products.number }} of {{ products.paginator.num_pages }}
+    </b>
+
+    <!-- Next Page Button -->
+    {% if products.has_next %}
+    <a href="?p={{ products.next_page_number }}" class="lush-btn-white py-3">
+      Next
+    </a>
+
+    {% endif %}
   </div>
 </section>
 {% endblock %}

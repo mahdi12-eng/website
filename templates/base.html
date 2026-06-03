@@ -1,0 +1,97 @@
+{% load static %} {% load shop_tags %} 
+{% include "includes/header.html" %}
+
+      <div class="container-fluid py-2 px-3 px-lg-5">
+        <div class="row align-items-center">
+          <!-- MOBILE MENU BUTTON (LEFT) -->
+          <div class="col-2 d-lg-none">
+            <button
+              class="navbar-toggler lush-menu-btn"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#lushOffcanvas"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+
+          <!-- LEFT LINKS (DESKTOP) -->
+          <div class="col-lg-4 d-none d-lg-block">
+            <a href="{% url 'shop:about' %}" class="lush-link me-4">OUR STORY</a>
+            <a href="{% url 'shop:contact' %}" class="lush-link">HELP</a>
+          </div>
+
+          <!-- CENTER LOGO -->
+          <div class="col-8 col-lg-4 text-center">
+            <a class="lush-logo" href="{% url 'shop:home' %}">PANJ SHANBE Bazaar</a>
+          </div>
+
+          <!-- RIGHT ICONS -->
+          <div
+            class="col-2 col-lg-4 text-end d-flex align-items-center justify-content-end"
+          >
+            <div class="header-search d-none d-lg-block me-4">
+              <form
+                action="{% url 'shop:products' %}"
+                method="GET"
+                class="d-flex border-bottom border-dark"
+              >
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="SEARCH..."
+                  class="lush-search-input border-0 bg-transparent"
+                />
+                <button type="submit" class="bg-transparent border-0">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <a
+              href="{% url 'shop:hot_products' %}"
+              class="lush-link hot-link d-none d-lg-inline-block me-4"
+              >HOT 🔥</a
+            >
+            
+            {% if request.user.is_authenticated  %}
+                 <a href="{% url 'dashboard:'%}" class="lush-icon-link me-3 me-lg-4"
+              ><i class="far fa-user"></i
+            ></a>
+              {% else %}
+                   <a href="{% url 'acounts:login'%}" class="lush-icon-link me-3 me-lg-4"
+              ><i class="far fa-user"></i
+            ></a>
+            {% endif %}
+              
+       
+            <a href="{% url 'shop:home' %}" class="lush-icon-link"
+              ><i class="fas fa-shopping-bag"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN NAVIGATION BAR (DESKTOP) -->
+      {% load_category_list %}
+      <!-- MOBILE SEARCH BAR (BELOW HEADER) -->
+      <div class="container-fluid d-lg-none bg-white py-2 border-bottom">
+        <form action="{% url 'shop:products' %}" method="GET" class="d-flex">
+          <input
+            type="text"
+            name="q"
+            placeholder="SEARCH PRODUCTS..."
+            class="form-control rounded-0 border-dark"
+          />
+          <button type="submit" class="btn btn-dark rounded-0 ms-2">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION (OFFCANVAS) -->
+    {% load_category_list_mobile %}
+    <main class="lush-main">{% block content %}{% endblock %}</main>
+
+    <!-- WAVY FOOTER -->
+{% include "includes/footer.html" %}

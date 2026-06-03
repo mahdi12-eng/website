@@ -17,13 +17,14 @@ Bazaar{% endblock %} {% block content %}
     <div class="col-md-6">
       <div class="p-4 p-lg-5 border border-dark">
         <h2 class="fw-black mb-5 text-uppercase">SIGN IN</h2>
-        <form action="{% url 'shop:slogin' %}" method="post">
+        <form action="{% url 'acounts:login' %}" method="post">
           {% csrf_token %}
           <div class="mb-4">
             <label for="username" class="small text-uppercase fw-bold mb-2"
               >Username or Email</label
             >
             <input
+              name="login"
               type="text"
               class="form-control rounded-0 border-dark py-3"
               id="username"
@@ -35,6 +36,7 @@ Bazaar{% endblock %} {% block content %}
             >
             <input
               type="password"
+              name="password"
               class="form-control rounded-0 border-dark py-3"
               id="password"
             />
@@ -42,6 +44,7 @@ Bazaar{% endblock %} {% block content %}
           <div class="mb-4 form-check">
             <input
               type="checkbox"
+              name="remember"
               class="form-check-input rounded-0 border-dark"
               id="remember"
             />
@@ -58,7 +61,7 @@ Bazaar{% endblock %} {% block content %}
         <div class="mt-5 pt-4 border-top border-dark text-center">
           <p class="small text-uppercase fw-bold mb-3">New to Panj Shanbe?</p>
           <a
-            href="{% url 'shop:register' %}"
+            href="{% url 'acounts:register' %}"
             class="lush-btn-white d-block w-100 py-3"
             >CREATE NEW ACCOUNT</a
           >

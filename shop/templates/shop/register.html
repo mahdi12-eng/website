@@ -1,5 +1,5 @@
-{% extends 'shop/base.html' %} {% load static %} {% block title %}Register -
-Panj Shanbe Bazaar{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}Register - Panj
+Shanbe Bazaar{% endblock %} {% block content %}
 <!-- REGISTER BANNER -->
 <section class="container-fluid py-5 px-5 bg-black text-white">
   <div class="row align-items-center">
@@ -18,7 +18,22 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
     <div class="col-md-7">
       <div class="p-4 p-lg-5 border border-dark">
         <h2 class="fw-black mb-5 text-uppercase">CREATE ACCOUNT</h2>
-        <form>
+        <form action="{%url 'shop:register'%}" method="post">
+          {% csrf_token %} {{form.as_p}}
+          <button type="submit" class="lush-btn-black w-100 py-3">
+            CREATE MY ACCOUNT
+          </button>
+          <br />
+        </form>
+        <div class="mt-5 pt-4 border-top border-dark text-center">
+          <p class="small text-uppercase fw-bold mb-3">Already a member?</p>
+          <a
+            href="{% url 'shop:login' %}"
+            class="lush-btn-white d-block w-100 py-3"
+            >SIGN IN HERE</a
+          >
+          <!--
+                  <form>
           {% csrf_token %}
           <div class="row">
             <div class="col-md-6 mb-4">
@@ -81,15 +96,9 @@ Panj Shanbe Bazaar{% endblock %} {% block content %}
               Privacy Policy, and Terms.
             </p>
           </div>
-          <button type="submit" class="lush-btn-black w-100 py-3">
-            CREATE MY ACCOUNT
-          </button>
-        </form>
-        <div class="mt-5 pt-4 border-top border-dark text-center">
-          <p class="small text-uppercase fw-bold mb-3">Already a member?</p>
-          <a href="{% url 'login' %}" class="lush-btn-white d-block w-100 py-3"
-            >SIGN IN HERE</a
-          >
+          
+          
+          -->
         </div>
       </div>
     </div>

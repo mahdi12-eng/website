@@ -14,6 +14,7 @@ SECRET_KEY = "django-insecure-lkad=lg^y96_nwk^3nef(po%%^7du*ar6b1b-*g84&i01e)+xw
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+SITE_ID = 2
 
 
 # Application definition
@@ -25,20 +26,41 @@ INSTALLED_APPS = [
     "django.contrib.sessions",  # ✅ REQUIRED
     "django.contrib.messages",  # ✅ REQUIRED
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "django_extensions",
+    "debug_toolbar",
+    'allauth',
+    'allauth.account',
     # MY APPS
     "shop",
+    "acounts",
+    "dashboard",
 ]
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_SQL': True,
+    'SHOW_STATICIP': True,
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",  # ✅ REQUIRED
     "django.middleware.common.CommonMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # ✅ REQUIRED
     "django.contrib.messages.middleware.MessageMiddleware",  # ✅ REQUIRED
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
+
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 ROOT_URLCONF = "my_shop.urls"
 
@@ -48,6 +70,8 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / "templates",
             BASE_DIR / "shop/templates",
+            BASE_DIR / "acounts/templates",
+            BASE_DIR / "dashboard/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -91,4 +115,6 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "shop/static",
+    BASE_DIR / "acounts/static",
 ]
+INTERNAL_IPS = ["127.0.0.1",]

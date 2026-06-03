@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %} {% load static %}{% block title %}All Products -
+{% extends "base.html" %} {% load static %}{% block title %}All Products -
 PanjShanbe Bazaar{% endblock %} {% block content %}
 <!-- PRODUCTS SLIDESHOW -->
 <div
@@ -48,7 +48,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
         <!-- BASE CARD -->
         <div class="lush-card-base">
           <div class="lush-img-container">
-            <a href="{% url 'product_detail' item.slug %}">
+            <a href="{% url 'shop:product_detail' item.pr_id %}">
               <img
                 src="{% static 'shop/images/products/'|add:item.image %}"
                 alt="{{ item.name }}"
@@ -65,7 +65,7 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
             </p>
             <h3 class="product-name" style="font-size: 1rem">
               <a
-                href="{% url 'product_detail' item.slug %}"
+                href="{% url 'shop:product_detail' item.pr_id %}"
                 class="text-black text-decoration-none"
                 >{{ item.name }}</a
               >
