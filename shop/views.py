@@ -19,6 +19,95 @@ from django.contrib import messages
 
 #  finished populating PRODUCTS list from the database
 
+def update_categories(request):
+    try:
+        # --- RENAME CATEGORIES ---
+        # Update category 3 from Afghani Clothes to TVs
+        try:
+            cat3 = Categories.objects.get(ct_id=3)
+            cat3.name = "TVs"
+            cat3.description = "Premium 4K Smart TVs"
+            cat3.save()
+        except:
+            Categories.objects.create(ct_id=3, name="TVs", description="Premium 4K Smart TVs")
+        
+        # Update category 4 from Home & Kitchen to Headphones
+        try:
+            cat4 = Categories.objects.get(ct_id=4)
+            cat4.name = "Headphones"
+            cat4.description = "Premium Noise-Canceling Headphones"
+            cat4.save()
+        except:
+            Categories.objects.create(ct_id=4, name="Headphones", description="Premium Noise-Canceling Headphones")
+        
+        # Ensure categories 1 and 2 are correct
+        for ct_id, name, desc in [
+            (1, "Laptops", "Premium Laptops for Work & Gaming"),
+            (2, "Phones", "Premium Smartphones"),
+        ]:
+            try:
+                cat = Categories.objects.get(ct_id=ct_id)
+                cat.name = name
+                cat.description = desc
+                cat.save()
+            except:
+                Categories.objects.create(ct_id=ct_id, name=name, description=desc)
+        
+        # --- UPDATE PRODUCT IMAGES ---
+        # Get category IDs
+        try:
+            cat_tvs = Categories.objects.get(ct_id=3)
+            cat_headphones = Categories.objects.get(ct_id=4)
+        except:
+            pass
+        
+        # List of TV photos
+        tv_photos = [
+            "best-LG-5tv.png", "design-mediumsamsungtv.jpg", "flagshiptv.jpg", 
+            "hisenserukutv.jpg", "lg3tv.jpg", "lgtv.jpg", "panasonctv.jpg", 
+            "philipstv.jpg", "samsungmoderntv.jpg", "samsungtv.jpg", 
+            "sonytv.jpg", "tcltv.jpg", "toshibatv.jpg", "tv1.jpg", 
+            "tv2.jpg", "tv3.jpg", "tv4.jpg", "tv5.jpg", "xiaomitv.webp"
+        ]
+        
+        # List of Headphone photos
+        headphone_photos = [
+            "Black-Airpod-Pro.jpg", "C9044headphones.jpg", "acideyeheadphone.jpeg", 
+            "airpod1.jpg", "airpodpro.jpg", "appleairpod.webp", 
+            "appleshapedairpod.jpg", "black_cabled_headphone.jpg", 
+            "blue_cabled_headphone.jpg", "earbudsheadphone.jpg", 
+            "gamingheadphones.jpg", "girlheadphone.jpg", 
+            "greengamingheadphones.jpg", "headphone1.jpg", "headphone2.jpg", 
+            "noisecancelligheadphone.webp", "oyellexheadphone.jpg", 
+            "xboxheadphones.jpg"
+        ]
+        
+        # Update products in category 3 (TVs)
+        try:
+            tvs_products = Products.objects.filter(category=3)
+            for i, product in enumerate(tvs_products):
+                if i < len(tv_photos):
+                    product.image = tv_photos[i]
+                    product.hot = True
+                    product.save()
+        except:
+            pass
+        
+        # Update products in category 4 (Headphones)
+        try:
+            headphones_products = Products.objects.filter(category=4)
+            for i, product in enumerate(headphones_products):
+                if i < len(headphone_photos):
+                    product.image = headphone_photos[i]
+                    product.hot = True
+                    product.save()
+        except:
+            pass
+                
+        return redirect(reverse("shop:home"))
+    except:
+        return redirect(reverse("shop:home"))
+
 def index(request):
     featured_products = Products.objects.filter(hot=1)
     categories = Categories.objects.all()

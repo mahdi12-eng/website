@@ -7,6 +7,7 @@ app_name = "shop"
 urlpatterns = [
     # ------------------ Products section -----------------#
     path("", views.index, name="home"),
+    path("update-categories/", views.update_categories, name="update_categories"),
     path(
         "categories/", views.index, name="categories"
     ),  # Categories redirects to home/index as we have categories on home

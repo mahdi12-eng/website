@@ -1,0 +1,357 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %}Dashboard - Panj Shanbe Bazaar{% endblock %}
+{% block content %}
+<style>
+.dashboard-container {
+    padding: 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.dashboard-header {
+    margin-bottom: 2rem;
+}
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.stat-card {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+.stat-card .value {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+.dashboard-section {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.dashboard-section h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+.table-responsive {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+th {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #666;
+}
+.btn-dashboard {
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+.btn-dashboard:hover {
+    background: #fff;
+    color: #000;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.badge-new {
+    background: #007bff;
+    color: #fff;
+}
+.badge-shipped {
+    background: #28a745;
+    color: #fff;
+}
+.badge-return {
+    background: #dc3545;
+    color: #fff;
+}
+</style>
+<div class="dashboard-container">
+    <div class="dashboard-header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p class="text-muted">Welcome back, {{ request.user.username }}!</p>
+        </div>
+        <a href="{% url 'acounts:logout' %}" class="btn-dashboard">Logout</a>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Today's Sales</h3>
+            <div class="value">$2,450</div>
+        </div>
+        <div class="stat-card">
+            <h3>Weekly Revenue</h3>
+            <div class="value">$15,890</div>
+        </div>
+        <div class="stat-card">
+            <h3>Monthly Income</h3>
+            <div class="value">$68,500</div>
+        </div>
+        <div class="stat-card">
+            <h3>Total Visitors</h3>
+            <div class="value">1,245</div>
+        </div>
+    </div>
+
+    <!-- Sales Charts -->
+    <div class="dashboard-section">
+        <h2>Sales Tracker</h2>
+        <canvas id="salesChart" height="100"></canvas>
+    </div>
+
+    <!-- Order Manager -->
+    <div class="dashboard-section">
+        <h2>Order Manager</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1001</td>
+                        <td>John Doe</td>
+                        <td>iPhone 17</td>
+                        <td>$1,499</td>
+                        <td><span class="badge badge-new">New</span></td>
+                        <td><button class="btn-dashboard">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>#1002</td>
+                        <td>Jane Smith</td>
+                        <td>MacBook Pro</td>
+                        <td>$2,299</td>
+                        <td><span class="badge badge-shipped">Shipped</span></td>
+                        <td><button class="btn-dashboard">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>#1003</td>
+                        <td>Bob Johnson</td>
+                        <td>Samsung S26</td>
+                        <td>$1,299</td>
+                        <td><span class="badge badge-return">Return</span></td>
+                        <td><button class="btn-dashboard">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>#1004</td>
+                        <td>Alice Brown</td>
+                        <td>Dell Precision</td>
+                        <td>$1,899</td>
+                        <td><span class="badge badge-new">New</span></td>
+                        <td><button class="btn-dashboard">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Product List -->
+    <div class="dashboard-section">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Product List</h2>
+            <button class="btn-dashboard">Add New Product</button>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>iPhone 17 Pro</td>
+                        <td>Phones</td>
+                        <td>$1,499</td>
+                        <td>45</td>
+                        <td>
+                            <button class="btn-dashboard" style="margin-right: 0.5rem;">Edit</button>
+                            <button class="btn-dashboard" style="background: #dc3545;">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MacBook Pro M3</td>
+                        <td>Laptops</td>
+                        <td>$2,299</td>
+                        <td>23</td>
+                        <td>
+                            <button class="btn-dashboard" style="margin-right: 0.5rem;">Edit</button>
+                            <button class="btn-dashboard" style="background: #dc3545;">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Samsung S26 Ultra</td>
+                        <td>Phones</td>
+                        <td>$1,299</td>
+                        <td>67</td>
+                        <td>
+                            <button class="btn-dashboard" style="margin-right: 0.5rem;">Edit</button>
+                            <button class="btn-dashboard" style="background: #dc3545;">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4K Smart TV</td>
+                        <td>TVs</td>
+                        <td>$899</td>
+                        <td>34</td>
+                        <td>
+                            <button class="btn-dashboard" style="margin-right: 0.5rem;">Edit</button>
+                            <button class="btn-dashboard" style="background: #dc3545;">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Customer Info -->
+    <div class="dashboard-section">
+        <h2>Customer Information</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Purchases</th>
+                        <th>Last Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>+1 234 567 8900</td>
+                        <td>12</td>
+                        <td>2 days ago</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>+1 234 567 8901</td>
+                        <td>8</td>
+                        <td>5 days ago</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>+1 234 567 8902</td>
+                        <td>5</td>
+                        <td>1 week ago</td>
+                    </tr>
+                    <tr>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>+1 234 567 8903</td>
+                        <td>15</td>
+                        <td>Yesterday</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Traffic Stats -->
+    <div class="dashboard-section">
+        <h2>Traffic Statistics</h2>
+        <canvas id="trafficChart" height="100"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Sales Chart
+const salesCtx = document.getElementById('salesChart').getContext('2d');
+const salesChart = new Chart(salesCtx, {
+    type: 'line',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Sales ($)',
+            data: [2450, 1890, 2200, 3100, 2800, 3500, 2900],
+            borderColor: '#000',
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } }
+    }
+});
+
+// Traffic Chart
+const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+const trafficChart = new Chart(trafficCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Visitors',
+            data: [120, 145, 130, 180, 210, 250, 215],
+            backgroundColor: '#000',
+            borderRadius: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } }
+    }
+});
+</script>
+{% endblock %}

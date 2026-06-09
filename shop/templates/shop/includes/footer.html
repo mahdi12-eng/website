@@ -38,7 +38,7 @@
         <div class="container-fluid">
           <div class="row g-5">
             <div class="col-lg-4">
-              <h2 class="lush-footer-logo mb-4">PANJ SHANBE</h2>
+              <h2 class="lush-footer-logo mb-4">PANJ SHANBE BAZAAR</h2>
               <p class="footer-about">
                 Bringing the finest Afghan products to the world. Quality,
                 culture, and technology in one place.
@@ -60,7 +60,7 @@
               <ul class="list-unstyled">
                 {% for category in categories %}
                 <li>
-                  <a href="{% url 'category_detail' category.slug %}"
+                  <a href="{% url 'shop:category_detail' category.ct_id %}"
                     >{{ category.name|upper }}</a
                   >
                 </li>
@@ -118,7 +118,7 @@
         aria-atomic="true"
       >
         <div class="toast-header bg-black text-white rounded-0 border-0">
-          <strong class="me-auto">PANJ SHANBE</strong>
+          <strong class="me-auto">PANJ SHANBE BAZAAR</strong>
           <button
             type="button"
             class="btn-close btn-close-white"
