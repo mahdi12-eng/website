@@ -128,7 +128,7 @@ class Payments(models.Model):
 
     def __str__(self) -> str:
         return f"{self.amount}-{self.method}"
-
+# only for test
 
 class Products(models.Model):
     pr_id = models.AutoField(primary_key=True)
