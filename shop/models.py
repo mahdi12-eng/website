@@ -15,7 +15,7 @@ class Address(models.Model):
 
 
 class Categories(models.Model):
-    ct_id = models.AutoField(primary_key=True, blank=True)
+    ct_id = models.AutoField(primary_key=True)
     name = models.CharField()
     description = models.TextField(blank=True)
 
@@ -135,8 +135,7 @@ class Products(models.Model):
     name = models.CharField()
     category = models.ForeignKey(
         Categories, models.DO_NOTHING, db_column="category")
-    # price = models.DecimalField(max_digits=5, decimal_places=2)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     description = models.TextField(blank=True, null=True)
     image = models.CharField(null=True)
     amount_in_stock = models.IntegerField(blank=True, null=True)
