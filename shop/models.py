@@ -135,7 +135,8 @@ class Products(models.Model):
     name = models.CharField()
     category = models.ForeignKey(
         Categories, models.DO_NOTHING, db_column="category")
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
     description = models.TextField(blank=True, null=True)
     image = models.CharField(null=True)
     amount_in_stock = models.IntegerField(blank=True, null=True)
