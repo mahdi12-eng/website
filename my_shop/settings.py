@@ -20,6 +20,7 @@ SITE_ID = 2
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -33,6 +34,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     'allauth',
     'allauth.account',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.github',
     # MY APPS
     "shop",
     "acounts",
@@ -118,3 +121,28 @@ STATICFILES_DIRS = [
     BASE_DIR / "acounts/static",
 ]
 INTERNAL_IPS = ["127.0.0.1",]
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+JAZZMIN_SETTINGS = {
+    "site_title": "Panj Shanbe Bazar",
+    "site_header": "Panj Shanbe Bazar",
+    "site_brand": "Panj Shanbe Bazar",
+    "welcome_sign": "Welcome to Admin panel",
+    "site_logo": "icons/android-chrome-192x192.png",
+    "show_ui_builder": True,
+    "order_with_respect_to": [
+        "shop",
+        "acounts",
+        "dashboard",
+    ],
+}

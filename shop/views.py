@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.contrib.auth.hashers import make_password
-from django.utils.text import slugify
 from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
 from django.core.paginator import Paginator
-# from .forms import LoginForm, RegisterForm, CustomersForm
 from django.contrib import messages
 # TODO: optimize the way products and categories are loaded to avoid unnecessary in-memory data duplication and ensure data consistency with the database
 
@@ -119,8 +116,6 @@ def index(request):
             "featured_products": featured_products,
         },
     )
-
-# TODO :fix this
 
 
 def products(request):
