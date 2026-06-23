@@ -1,14 +1,22 @@
 from django.contrib import admin
-# from .. import models as md
+from django.contrib.auth.admin import UserAdmin
+from .models import User, Address
 
-# admin.site.register(md.Address)
-# admin.site.register(md.Categories)
-# admin.site.register(md.Customers)
-# admin.site.register(md.Feedbacks)
-# admin.site.register(md.Invoices)
-# admin.site.register(md.Orders)
-# admin.site.register(md.OrderDetail)
-# admin.site.register(md.PaymentMethod)
-# admin.site.register(md.Payments)
-# admin.site.register(md.Products)
-# admin.site.register(md.Status)
+
+class CutomUserAdmin(UserAdmin):
+    model = User
+    list_display = ["name", "last_name", "email", "is_staff"]
+    list_filter = ["name", "email", "is_staff"]
+    search_fields = ["name", "email"]
+    ordering = ["name"]
+    fieldsets = (
+        ("Authentications", {
+            "fields": (
+                "name", "last_name", "email", "address", "birth_date"
+            ),
+        }),
+    )
+
+
+admin.site.register(Address)
+admin.site.register(User, CutomUserAdmin)

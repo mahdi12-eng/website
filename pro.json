@@ -1,0 +1,1107 @@
+[
+  {
+    "model": "shop.products",
+    "pk": 1,
+    "fields": {
+      "name": "Dell Precision 5570",
+      "category": 1,
+      "price": "1450.00",
+      "description": "Powerful workstation for high-end professional tasks.",
+      "image": "5570computer.jpg",
+      "amount_in_stock": null,
+      "hot": false
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 2,
+    "fields": {
+      "name": "MacBook Pro M3 Max",
+      "category": 1,
+      "price": "2499.00",
+      "description": "The ultimate power for developers and creators.",
+      "image": "macbookcomputer.jpg",
+      "amount_in_stock": null,
+      "hot": false
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 3,
+    "fields": {
+      "name": "MacBook Air 13-inch",
+      "category": 1,
+      "price": "1099.00",
+      "description": "Thin, light, and faster than ever.",
+      "image": "mscbook1.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 4,
+    "fields": {
+      "name": "Dell Latitude 7420",
+      "category": 1,
+      "price": "899.00",
+      "description": "Compact business laptop with great battery life.",
+      "image": "computer.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 5,
+    "fields": {
+      "name": "Precision Workstation 5540",
+      "category": 1,
+      "price": "1150.00",
+      "description": "Reliable performance in a sleek design.",
+      "image": "computer5540.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 6,
+    "fields": {
+      "name": "MacBook Pro Silver",
+      "category": 1,
+      "price": "1299.00",
+      "description": "Classic design with modern internals.",
+      "image": "macbook3.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 7,
+    "fields": {
+      "name": "Dell XPS 15",
+      "category": 1,
+      "price": "1350.00",
+      "description": "Stunning display with powerful performance.",
+      "image": "computer1.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 8,
+    "fields": {
+      "name": "Workstation Pro 0",
+      "category": 1,
+      "price": "950.00",
+      "description": "Budget friendly professional laptop.",
+      "image": "computer0.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9,
+    "fields": {
+      "name": "Workstation Pro 00",
+      "category": 1,
+      "price": "1050.00",
+      "description": "Reliable daily driver for work.",
+      "image": "computer00.jpg",
+      "amount_in_stock": null,
+      "hot": false
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 10,
+    "fields": {
+      "name": "Dell Precision V2",
+      "category": 1,
+      "price": "1400.00",
+      "description": "High-end graphics and CPU power.",
+      "image": "computer2.jpg",
+      "amount_in_stock": null,
+      "hot": false
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 11,
+    "fields": {
+      "name": "MacBook Pro M2",
+      "category": 1,
+      "price": "1599.00",
+      "description": "Fast and efficient Apple Silicon.",
+      "image": "macbook4.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 12,
+    "fields": {
+      "name": "MacBook Pro Space Gray",
+      "category": 1,
+      "price": "1799.00",
+      "description": "The choice for professional editors.",
+      "image": "macbook5.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 13,
+    "fields": {
+      "name": "MacBook Pro 16",
+      "category": 1,
+      "price": "2199.00",
+      "description": "Large screen for maximum productivity.",
+      "image": "macbook6.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 14,
+    "fields": {
+      "name": "Precision Elite",
+      "category": 1,
+      "price": "1850.00",
+      "description": "Top tier Dell workstation performance.",
+      "image": "precisioncomputer.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 15,
+    "fields": {
+      "name": "iPhone 17 Pro Max",
+      "category": 2,
+      "price": "1299.00",
+      "description": "The next generation of intelligence and speed.",
+      "image": "iphone17.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 16,
+    "fields": {
+      "name": "Samsung Galaxy S26 Ultra",
+      "category": 2,
+      "price": "1399.00",
+      "description": "The peak of mobile photography and power.",
+      "image": "s26ultra.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 17,
+    "fields": {
+      "name": "iPhone 16 Gold",
+      "category": 2,
+      "price": "999.00",
+      "description": "Elegance meets performance.",
+      "image": "iphone.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 18,
+    "fields": {
+      "name": "Samsung Note 23 Plus",
+      "category": 2,
+      "price": "950.00",
+      "description": "Designed for productivity with S-Pen support.",
+      "image": "notephone23.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 19,
+    "fields": {
+      "name": "Infinix Zero Pro",
+      "category": 2,
+      "price": "450.00",
+      "description": "Premium features at an accessible price point.",
+      "image": "nfnxmobile.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 20,
+    "fields": {
+      "name": "Samsung S26 FE",
+      "category": 2,
+      "price": "799.00",
+      "description": "Fan favorite features in a new design.",
+      "image": "s26.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 21,
+    "fields": {
+      "name": "iPhone 17 Base",
+      "category": 2,
+      "price": "899.00",
+      "description": "Simple, powerful, and beautiful.",
+      "image": "iphone177.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 22,
+    "fields": {
+      "name": "iPhone 15 Colors",
+      "category": 2,
+      "price": "799.00",
+      "description": "Available in multiple vibrant colors.",
+      "image": "iphone-15-colors-1.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 23,
+    "fields": {
+      "name": "Classic iPhone",
+      "category": 2,
+      "price": "599.00",
+      "description": "Reliable and familiar iOS experience.",
+      "image": "iphone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 24,
+    "fields": {
+      "name": "iPhone Pro Edition",
+      "category": 2,
+      "price": "1099.00",
+      "description": "Professional grade mobile camera.",
+      "image": "iphone.png",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 25,
+    "fields": {
+      "name": "iPhone 16 Girl Edition",
+      "category": 2,
+      "price": "999.00",
+      "description": "Special edition for fashion lovers.",
+      "image": "iphone16girl.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 26,
+    "fields": {
+      "name": "iPhone Handheld",
+      "category": 2,
+      "price": "850.00",
+      "description": "Compact design for one-hand use.",
+      "image": "iphonehand.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 27,
+    "fields": {
+      "name": "iPhone Handheld V2",
+      "category": 2,
+      "price": "899.00",
+      "description": "Improved grip and battery life.",
+      "image": "iphonehand2.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 28,
+    "fields": {
+      "name": "Note Phone Classic",
+      "category": 2,
+      "price": "750.00",
+      "description": "Large display for media consumption.",
+      "image": "notephone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 29,
+    "fields": {
+      "name": "Mobile Pro 43",
+      "category": 2,
+      "price": "400.00",
+      "description": "Solid mid-range performance.",
+      "image": "phone43.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 30,
+    "fields": {
+      "name": "Phone of Beauty",
+      "category": 2,
+      "price": "1150.00",
+      "description": "Exquisite design and screen.",
+      "image": "phoneofbeauty.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 31,
+    "fields": {
+      "name": "Phone of S",
+      "category": 2,
+      "price": "950.00",
+      "description": "Speed and simplicity combined.",
+      "image": "phoneofs.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 32,
+    "fields": {
+      "name": "Phone S26 Pro",
+      "category": 2,
+      "price": "1250.00",
+      "description": "High-end specs for power users.",
+      "image": "phones26.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 33,
+    "fields": {
+      "name": "Samsung Mobile Elite",
+      "category": 2,
+      "price": "1100.00",
+      "description": "Premium Samsung build quality.",
+      "image": "samsungmobile.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 34,
+    "fields": {
+      "name": "S-Model Phone",
+      "category": 2,
+      "price": "850.00",
+      "description": "Stylish and modern smartphone.",
+      "image": "smodelphone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 37,
+    "fields": {
+      "name": "Hazaragi Cultural Dress",
+      "category": 3,
+      "price": "110.00",
+      "description": "Vibrant traditional Hazaragi attire.",
+      "image": "design-mediumsamsungtv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 40,
+    "fields": {
+      "name": "Afghan Party Wear",
+      "category": 3,
+      "price": "130.00",
+      "description": "Modern twist on traditional Afghan fashion.",
+      "image": "lg3tv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 41,
+    "fields": {
+      "name": "Hazaragi Party Set",
+      "category": 3,
+      "price": "125.00",
+      "description": "Perfect for weddings and special occasions.",
+      "image": "lgtv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 46,
+    "fields": {
+      "name": "Classic Chapan",
+      "category": 3,
+      "price": "95.00",
+      "description": "Traditional Afghan outer garment.",
+      "image": "sonytv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 47,
+    "fields": {
+      "name": "Royal Chapan",
+      "category": 3,
+      "price": "120.00",
+      "description": "High quality velvet chapan.",
+      "image": "tcltv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 49,
+    "fields": {
+      "name": "Velvet Girl Dress",
+      "category": 3,
+      "price": "90.00",
+      "description": "Soft velvet dress with patterns.",
+      "image": "tv1.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 51,
+    "fields": {
+      "name": "Hazaragi Cultural V3",
+      "category": 3,
+      "price": "115.00",
+      "description": "Authentic Hazaragi embroidery.",
+      "image": "tv3.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 52,
+    "fields": {
+      "name": "Hazaragi Cultural V4",
+      "category": 3,
+      "price": "120.00",
+      "description": "Intricate hand-made patterns.",
+      "image": "tv4.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 69,
+    "fields": {
+      "name": "Dell Precision 5570",
+      "category": 1,
+      "price": "1450.00",
+      "description": "Powerful workstation for high-end professional tasks.",
+      "image": "5570computer.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 70,
+    "fields": {
+      "name": "MacBook Pro M3 Max",
+      "category": 1,
+      "price": "2499.00",
+      "description": "The ultimate power for developers and creators.",
+      "image": "macbookcomputer.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 71,
+    "fields": {
+      "name": "MacBook Air 13-inch",
+      "category": 1,
+      "price": "1099.00",
+      "description": "Thin, light, and faster than ever.",
+      "image": "mscbook1.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 72,
+    "fields": {
+      "name": "Dell Latitude 7420",
+      "category": 1,
+      "price": "899.00",
+      "description": "Compact business laptop with great battery life.",
+      "image": "computer.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 73,
+    "fields": {
+      "name": "Precision Workstation 5540",
+      "category": 1,
+      "price": "1150.00",
+      "description": "Reliable performance in a sleek design.",
+      "image": "computer5540.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 74,
+    "fields": {
+      "name": "MacBook Pro Silver",
+      "category": 1,
+      "price": "1299.00",
+      "description": "Classic design with modern internals.",
+      "image": "macbook3.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 75,
+    "fields": {
+      "name": "Dell XPS 15",
+      "category": 1,
+      "price": "1350.00",
+      "description": "Stunning display with powerful performance.",
+      "image": "computer1.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 76,
+    "fields": {
+      "name": "Workstation Pro 0",
+      "category": 1,
+      "price": "950.00",
+      "description": "Budget friendly professional laptop.",
+      "image": "computer0.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 77,
+    "fields": {
+      "name": "Workstation Pro 00",
+      "category": 1,
+      "price": "1050.00",
+      "description": "Reliable daily driver for work.",
+      "image": "computer00.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 78,
+    "fields": {
+      "name": "Dell Precision V2",
+      "category": 1,
+      "price": "1400.00",
+      "description": "High-end graphics and CPU power.",
+      "image": "computer2.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 79,
+    "fields": {
+      "name": "MacBook Pro M2",
+      "category": 1,
+      "price": "1599.00",
+      "description": "Fast and efficient Apple Silicon.",
+      "image": "macbook4.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 80,
+    "fields": {
+      "name": "MacBook Pro Space Gray",
+      "category": 1,
+      "price": "1799.00",
+      "description": "The choice for professional editors.",
+      "image": "macbook5.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 81,
+    "fields": {
+      "name": "MacBook Pro 16",
+      "category": 1,
+      "price": "2199.00",
+      "description": "Large screen for maximum productivity.",
+      "image": "macbook6.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 82,
+    "fields": {
+      "name": "Precision Elite",
+      "category": 1,
+      "price": "1850.00",
+      "description": "Top tier Dell workstation performance.",
+      "image": "precisioncomputer.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 83,
+    "fields": {
+      "name": "iPhone 17 Pro Max",
+      "category": 2,
+      "price": "1299.00",
+      "description": "The next generation of intelligence and speed.",
+      "image": "iphone17.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 84,
+    "fields": {
+      "name": "Samsung Galaxy S26 Ultra",
+      "category": 2,
+      "price": "1399.00",
+      "description": "The peak of mobile photography and power.",
+      "image": "s26ultra.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 85,
+    "fields": {
+      "name": "iPhone 16 Gold",
+      "category": 2,
+      "price": "999.00",
+      "description": "Elegance meets performance.",
+      "image": "iphone.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 86,
+    "fields": {
+      "name": "Samsung Note 23 Plus",
+      "category": 2,
+      "price": "950.00",
+      "description": "Designed for productivity with S-Pen support.",
+      "image": "notephone23.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 87,
+    "fields": {
+      "name": "Infinix Zero Pro",
+      "category": 2,
+      "price": "450.00",
+      "description": "Premium features at an accessible price point.",
+      "image": "nfnxmobile.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 88,
+    "fields": {
+      "name": "Samsung S26 FE",
+      "category": 2,
+      "price": "799.00",
+      "description": "Fan favorite features in a new design.",
+      "image": "s26.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 89,
+    "fields": {
+      "name": "iPhone 17 Base",
+      "category": 2,
+      "price": "899.00",
+      "description": "Simple, powerful, and beautiful.",
+      "image": "iphone177.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 90,
+    "fields": {
+      "name": "iPhone 15 Colors",
+      "category": 2,
+      "price": "799.00",
+      "description": "Available in multiple vibrant colors.",
+      "image": "iphone-15-colors-1.webp",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 91,
+    "fields": {
+      "name": "Classic iPhone",
+      "category": 2,
+      "price": "599.00",
+      "description": "Reliable and familiar iOS experience.",
+      "image": "iphone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 92,
+    "fields": {
+      "name": "iPhone Pro Edition",
+      "category": 2,
+      "price": "1099.00",
+      "description": "Professional grade mobile camera.",
+      "image": "iphone.png",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 93,
+    "fields": {
+      "name": "iPhone 16 Girl Edition",
+      "category": 2,
+      "price": "999.00",
+      "description": "Special edition for fashion lovers.",
+      "image": "iphone16girl.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 94,
+    "fields": {
+      "name": "iPhone Handheld",
+      "category": 2,
+      "price": "850.00",
+      "description": "Compact design for one-hand use.",
+      "image": "iphonehand.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 95,
+    "fields": {
+      "name": "iPhone Handheld V2",
+      "category": 2,
+      "price": "899.00",
+      "description": "Improved grip and battery life.",
+      "image": "iphonehand2.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 96,
+    "fields": {
+      "name": "Note Phone Classic",
+      "category": 2,
+      "price": "750.00",
+      "description": "Large display for media consumption.",
+      "image": "notephone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 97,
+    "fields": {
+      "name": "Mobile Pro 43",
+      "category": 2,
+      "price": "400.00",
+      "description": "Solid mid-range performance.",
+      "image": "phone43.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 98,
+    "fields": {
+      "name": "Phone of Beauty",
+      "category": 2,
+      "price": "1150.00",
+      "description": "Exquisite design and screen.",
+      "image": "phoneofbeauty.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 99,
+    "fields": {
+      "name": "Phone of S",
+      "category": 2,
+      "price": "950.00",
+      "description": "Speed and simplicity combined.",
+      "image": "phoneofs.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 100,
+    "fields": {
+      "name": "Phone S26 Pro",
+      "category": 2,
+      "price": "1250.00",
+      "description": "High-end specs for power users.",
+      "image": "phones26.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 101,
+    "fields": {
+      "name": "Samsung Mobile Elite",
+      "category": 2,
+      "price": "1100.00",
+      "description": "Premium Samsung build quality.",
+      "image": "samsungmobile.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 102,
+    "fields": {
+      "name": "S-Model Phone",
+      "category": 2,
+      "price": "850.00",
+      "description": "Stylish and modern smartphone.",
+      "image": "smodelphone.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 109,
+    "fields": {
+      "name": "Hazaragi Party Set",
+      "category": 3,
+      "price": "125.00",
+      "description": "Perfect for weddings and special occasions.",
+      "image": "hazaragicllothes2.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9113,
+    "fields": {
+      "name": "✅ TV 1 (TEST)",
+      "category": 3,
+      "price": "599.00",
+      "description": "4K Smart TV 1",
+      "image": "best-LG-5tv.png",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9114,
+    "fields": {
+      "name": "✅ TV 2 (TEST)",
+      "category": 3,
+      "price": "699.00",
+      "description": "4K Smart TV 2",
+      "image": "design-mediumsamsungtv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9115,
+    "fields": {
+      "name": "✅ TV 3 (TEST)",
+      "category": 3,
+      "price": "799.00",
+      "description": "4K Smart TV 3",
+      "image": "flagshiptv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9116,
+    "fields": {
+      "name": "✅ TV 4 (TEST)",
+      "category": 3,
+      "price": "899.00",
+      "description": "4K Smart TV 4",
+      "image": "lgtv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9117,
+    "fields": {
+      "name": "✅ TV 5 (TEST)",
+      "category": 3,
+      "price": "999.00",
+      "description": "4K Smart TV 5",
+      "image": "samsungtv.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9118,
+    "fields": {
+      "name": "✅ Headphones 1 (TEST)",
+      "category": 4,
+      "price": "79.00",
+      "description": "Noise-Canceling Headphones 1",
+      "image": "Black-Airpod-Pro.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9119,
+    "fields": {
+      "name": "✅ Headphones 2 (TEST)",
+      "category": 4,
+      "price": "109.00",
+      "description": "Noise-Canceling Headphones 2",
+      "image": "gamingheadphones.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  },
+  {
+    "model": "shop.products",
+    "pk": 9120,
+    "fields": {
+      "name": "✅ Headphones 3 (TEST)",
+      "category": 4,
+      "price": "139.00",
+      "description": "Noise-Canceling Headphones 3",
+      "image": "xboxheadphones.jpg",
+      "amount_in_stock": null,
+      "hot": true
+    }
+  }
+]

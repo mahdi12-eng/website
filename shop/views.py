@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Address, Categories, Customers, Feedbacks, Invoices, Products
+from .models import Categories,  Feedbacks, Invoices, Products
 from django.core.paginator import Paginator
 from django.contrib import messages
 # TODO: optimize the way products and categories are loaded to avoid unnecessary in-memory data duplication and ensure data consistency with the database
@@ -26,8 +26,9 @@ def update_categories(request):
             cat3.description = "Premium 4K Smart TVs"
             cat3.save()
         except:
-            Categories.objects.create(ct_id=3, name="TVs", description="Premium 4K Smart TVs")
-        
+            Categories.objects.create(
+                ct_id=3, name="TVs", description="Premium 4K Smart TVs")
+
         # Update category 4 from Home & Kitchen to Headphones
         try:
             cat4 = Categories.objects.get(ct_id=4)
@@ -35,8 +36,9 @@ def update_categories(request):
             cat4.description = "Premium Noise-Canceling Headphones"
             cat4.save()
         except:
-            Categories.objects.create(ct_id=4, name="Headphones", description="Premium Noise-Canceling Headphones")
-        
+            Categories.objects.create(
+                ct_id=4, name="Headphones", description="Premium Noise-Canceling Headphones")
+
         # Ensure categories 1 and 2 are correct
         for ct_id, name, desc in [
             (1, "Laptops", "Premium Laptops for Work & Gaming"),
@@ -48,8 +50,9 @@ def update_categories(request):
                 cat.description = desc
                 cat.save()
             except:
-                Categories.objects.create(ct_id=ct_id, name=name, description=desc)
-        
+                Categories.objects.create(
+                    ct_id=ct_id, name=name, description=desc)
+
         # --- UPDATE PRODUCT IMAGES ---
         # Get category IDs
         try:
@@ -57,28 +60,28 @@ def update_categories(request):
             cat_headphones = Categories.objects.get(ct_id=4)
         except:
             pass
-        
+
         # List of TV photos
         tv_photos = [
-            "best-LG-5tv.png", "design-mediumsamsungtv.jpg", "flagshiptv.jpg", 
-            "hisenserukutv.jpg", "lg3tv.jpg", "lgtv.jpg", "panasonctv.jpg", 
-            "philipstv.jpg", "samsungmoderntv.jpg", "samsungtv.jpg", 
-            "sonytv.jpg", "tcltv.jpg", "toshibatv.jpg", "tv1.jpg", 
+            "best-LG-5tv.png", "design-mediumsamsungtv.jpg", "flagshiptv.jpg",
+            "hisenserukutv.jpg", "lg3tv.jpg", "lgtv.jpg", "panasonctv.jpg",
+            "philipstv.jpg", "samsungmoderntv.jpg", "samsungtv.jpg",
+            "sonytv.jpg", "tcltv.jpg", "toshibatv.jpg", "tv1.jpg",
             "tv2.jpg", "tv3.jpg", "tv4.jpg", "tv5.jpg", "xiaomitv.webp"
         ]
-        
+
         # List of Headphone photos
         headphone_photos = [
-            "Black-Airpod-Pro.jpg", "C9044headphones.jpg", "acideyeheadphone.jpeg", 
-            "airpod1.jpg", "airpodpro.jpg", "appleairpod.webp", 
-            "appleshapedairpod.jpg", "black_cabled_headphone.jpg", 
-            "blue_cabled_headphone.jpg", "earbudsheadphone.jpg", 
-            "gamingheadphones.jpg", "girlheadphone.jpg", 
-            "greengamingheadphones.jpg", "headphone1.jpg", "headphone2.jpg", 
-            "noisecancelligheadphone.webp", "oyellexheadphone.jpg", 
+            "Black-Airpod-Pro.jpg", "C9044headphones.jpg", "acideyeheadphone.jpeg",
+            "airpod1.jpg", "airpodpro.jpg", "appleairpod.webp",
+            "appleshapedairpod.jpg", "black_cabled_headphone.jpg",
+            "blue_cabled_headphone.jpg", "earbudsheadphone.jpg",
+            "gamingheadphones.jpg", "girlheadphone.jpg",
+            "greengamingheadphones.jpg", "headphone1.jpg", "headphone2.jpg",
+            "noisecancelligheadphone.webp", "oyellexheadphone.jpg",
             "xboxheadphones.jpg"
         ]
-        
+
         # Update products in category 3 (TVs)
         try:
             tvs_products = Products.objects.filter(category=3)
@@ -89,7 +92,7 @@ def update_categories(request):
                     product.save()
         except:
             pass
-        
+
         # Update products in category 4 (Headphones)
         try:
             headphones_products = Products.objects.filter(category=4)
@@ -100,10 +103,11 @@ def update_categories(request):
                     product.save()
         except:
             pass
-                
+
         return redirect(reverse("shop:home"))
     except:
         return redirect(reverse("shop:home"))
+
 
 def index(request):
     featured_products = Products.objects.filter(hot=1)

@@ -146,3 +146,12 @@ JAZZMIN_SETTINGS = {
         "dashboard",
     ],
 }
+AUTH_USER_MODEL="acounts.user"
+#allauth settings
+
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
