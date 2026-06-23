@@ -27,4 +27,4 @@ In this project, we tried to reinvent the wheel and build many parts from scratc
 ## Authors
 
 - Mahdi Hatami
-- Sayeed Mohammad Hashemi
+- Sayed Mohammad Hashimi
