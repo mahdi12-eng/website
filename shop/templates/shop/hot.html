@@ -14,13 +14,23 @@ Shanbe Bazaar{% endblock %} {% block content %}
           <div class="lush-card-base">
             <div class="lush-img-container">
               <a href="{% url 'shop:product_detail' product.pr_id %}">
-                <img src="{% static 'shop/images/products/'|add:product.image %}" alt="{{ product.name }}" class="img-fluid">
+                <img
+                  src="{% static 'shop/images/products/'|add:product.image %}"
+                  alt="{{ product.name }}"
+                  class="img-fluid"
+                />
               </a>
               <div class="hot-badge">HOT</div>
             </div>
             <div class="lush-product-info p-3">
               <p class="category-label">{{ product.category|upper }}</p>
-              <h3 class="product-name"><a href="{% url 'shop:product_detail' product.pr_id %}" class="text-black text-decoration-none">{{ product.name }}</a></h3>
+              <h3 class="product-name">
+                <a
+                  href="{% url 'shop:product_detail' product.pr_id %}"
+                  class="text-black text-decoration-none"
+                  >{{ product.name }}</a
+                >
+              </h3>
               <p class="product-price">${{ product.price }}</p>
               <button class="lush-btn-black w-100 py-2 mt-2">ADD TO BAG</button>
             </div>
@@ -31,27 +41,24 @@ Shanbe Bazaar{% endblock %} {% block content %}
     </div>
     <!-- Previous Page Button -->
 
-    {% if products.has_previous %}
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
     <a
-      href="?p={{ products.previous_page_number }}"
+      href="?page={{ page_obj.previous_page_number }}"
       class="lush-btn-white py-3"
+      >previous</a
     >
-      Previous
-    </a>
-
     {% endif %}
-
     <!-- Page Number -->
     <b style="margin: auto 5% auto 5%">
-      Page {{ products.number }} of {{ products.paginator.num_pages }}
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     </b>
 
     <!-- Next Page Button -->
-    {% if products.has_next %}
-    <a href="?p={{ products.next_page_number }}" class="lush-btn-white py-3">
-      Next
-    </a>
-
+ {% if page_obj.has_next %}
+    <a href="?page={{page_obj.next_page_number }}"
+     class="lush-btn-white py-3">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo ;</a>
     {% endif %}
   </div>
 </section>

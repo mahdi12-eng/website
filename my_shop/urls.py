@@ -13,5 +13,6 @@ urlpatterns = [
     path("acounts/", include('acounts.urls')),
     path("dashboard/", include('dashboard.urls')),
     path("", include(("shop.urls", "shop"), namespace="shop")),
+    path("api/v1/", include(("shop.api.url" ))),
     path("__debug__/", include(debug_toolbar.urls))
 ]

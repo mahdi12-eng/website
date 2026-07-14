@@ -13,9 +13,11 @@ class Categories(models.Model):
 
     class Meta:
         db_table = "categories"
+    def __str__(self):
+        return self.name
+    
 
-    def __str__(self) -> str:
-        return f"{self.name}"
+
 
 
 class Feedbacks(models.Model):
@@ -107,8 +109,7 @@ class Products(models.Model):
     amount_in_stock = models.IntegerField(blank=True, null=True)
     hot = models.BooleanField(blank=True, null=True)
 
-    def __str__(self):
-        return f"{self.pr_id}-{self.name}-{self.price}"
+
 
     class Meta:
         db_table = "products"

@@ -147,7 +147,7 @@
   </div>
   <div class="row g-3 g-md-4 px-lg-5">
     <!--looping trow the products  -->
-    {% for item in featured_products|slice:":8" %}
+    {% for item in featured_products%}
     <div class="col-12 col-md-4">
       <div class="lush-product-card">
         <!-- BASE CARD (Visible by default) -->
@@ -203,8 +203,8 @@
 
               <!---->
               {% if request.user.is_authenticated%}
-              <button class="flyout-btn">DELETE</button>
-              <button class="flyout-btn">UPDATE</button>
+              <a class="flyout-btn" href="{% url 'shop:delete-product' pk=item.pr_id %}" >DELETE</a>
+              <a class="flyout-btn" href="{% url 'shop:update-product' pk=item.pr_id %}" >UPDATE</a>
               {% else %}
               <button class="flyout-btn">ADD TO BAG</button>
               {% endif %}
@@ -214,7 +214,7 @@
       </div>
     </div>
     {% endfor %} {% if request.user.is_authenticated %}
-    <button class="flyout-btn">Add Product</button>
+    <a class="flyout-btn" href="{% url 'shop:add-product' %}"><center>Add Product</center></a
     {% endif %}
   </div>
 </section>

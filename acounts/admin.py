@@ -16,6 +16,14 @@ class CutomUserAdmin(UserAdmin):
             ),
         }),
     )
+    add_fieldsets = (
+        ( "Authentications",{
+            "fields": (
+                "name","last_name","email","birth_date","address","password1","password2"
+            ),
+        }),
+    )
+    
 
 
 admin.site.register(Address)

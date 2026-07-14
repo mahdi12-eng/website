@@ -73,6 +73,12 @@ PanjShanbe Bazaar{% endblock %} {% block content %}
             <p class="product-price mb-0" style="font-size: 0.9rem">
               {{ item.price }}
             </p>
+                {% if request.user.is_authenticated%}
+              <a class="flyout-btn" href="{% url 'shop:delete-product' pk=item.pr_id %}" >DELETE</a>
+              <a class="flyout-btn" href="{% url 'shop:update-product' pk=item.pr_id %}" >UPDATE</a>
+              {% else %}
+              <button class="flyout-btn">ADD TO BAG</button>
+              {% endif %}
           </div>
         </div>
 

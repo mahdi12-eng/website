@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="form-control rounded-0 border-dark py-3" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Sumite">
+    </form>
+{% endblock content %}
+    
